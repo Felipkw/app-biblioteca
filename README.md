@@ -2,15 +2,27 @@
 
 Aplicativo de biblioteca virtual.
 
-## Getting Started
+## Como usar
 
-This project is a starting point for a Flutter application.
++ ### Gitpod
 
-A few resources to get you started if this is your first Flutter project:
+### 1. Abra seu repositório no Gitpod   
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Felipkw/app-biblioteca)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 2. Execute seu projeto pelo terminal do Gitpod:
+
+~~~
+$ flutter run -d web-server --web-hostname=0.0.0.0 --web-port=3000
+~~~
+
+### 3. Vá para a aba *PORTS*, do lado do Terminal, e na Port 3000 clique em *Open Preview*, para abrir ao lado do código, ou *Open Browser*, para abrir em uma nova aba do navegador.
+
+![image](https://user-images.githubusercontent.com/94010073/236356301-ac3feab6-a7e9-41fe-b097-3993ec138a17.png)
+![image](https://user-images.githubusercontent.com/94010073/236356199-5c6f1887-e5a4-4202-b0b0-b6d7da3b1aea.png)
+
+<br>
+
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+
