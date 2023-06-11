@@ -12,7 +12,20 @@ class _TelaInicialState extends State<TelaInicial> {
   Widget build(BuildContext context) {
     return SafeArea(
       
-      child: Scaffold(
+      child: SafeArea(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color(0xff6A1B9A),
+                Colors.black,
+              ]),
+        ),
+        child: Scaffold(
           backgroundColor: Colors.purple,
           appBar: buildAppBar(),
           body: Padding(
@@ -28,22 +41,25 @@ class _TelaInicialState extends State<TelaInicial> {
                   size: 96.0,
                   color: Colors.white,
                 ),
-
-                const SizedBox(height: 16.0),
+              ],
+            ),
+);
+                
+                const SizedBox(height: 20.0),
 
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                        const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                       ),
                       textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 20.0),
+                        const TextStyle(fontSize: 25.0),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                     ),
@@ -52,21 +68,21 @@ class _TelaInicialState extends State<TelaInicial> {
                     child: const Text("Cadastro")
                 ),
 
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 20.0),
 
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                        const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                       ),
                       textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 16.0),
+                        const TextStyle(fontSize: 25.0),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                     ),
