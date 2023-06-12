@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+
+class TelaInicial extends StatefulWidget {
+  const TelaInicial({Key? key}) : super(key: key);
+
+  @override
+  State<TelaInicial> createState() => _TelaInicialState();
+}
+
+class _TelaInicialState extends State<TelaInicial> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color(0xff6A1B9A),
+                Colors.black,
+              ]),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: buildAppBar(),
+          body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              color: Colors.transparent,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Icon(
+                  Icons.account_circle,
+                  size: 96.0,
+                  color: Colors.white,
+                ),
+                
+                const SizedBox(height: 20.0),
+
+                ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                      ),
+                      textStyle: MaterialStateProperty.all<TextStyle>(
+                        const TextStyle(fontSize: 25.0),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                    },
+                    child: const Text("Cadastro")
+                ),
+
+                const SizedBox(height: 20.0),
+
+                ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                      ),
+                      textStyle: MaterialStateProperty.all<TextStyle>(
+                        const TextStyle(fontSize: 25.0),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Login")
+                ),
+              ],
+            ),
+            ),
+          ),
+          ),
+      ),
+    );
+  }
+
+  buildAppBar() {
+    return AppBar(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      title: const Text("BOOK HAVEN", style: TextStyle(fontSize: 25.0)),
+    );
+  }
+}
