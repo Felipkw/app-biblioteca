@@ -11,8 +11,6 @@ class _TelaInicialState extends State<TelaInicial> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      
-      child: SafeArea(
       child: Container(
         width: double.infinity,
         height: double.infinity,
@@ -26,7 +24,7 @@ class _TelaInicialState extends State<TelaInicial> {
               ]),
         ),
         child: Scaffold(
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.transparent,
           appBar: buildAppBar(),
           body: Padding(
             padding: const EdgeInsets.all(16),
@@ -41,9 +39,10 @@ class _TelaInicialState extends State<TelaInicial> {
                   size: 96.0,
                   color: Colors.white,
                 ),
-              ],
-            ),
-);
+              
+              
+            
+
                 
                 const SizedBox(height: 20.0),
 
@@ -91,9 +90,10 @@ class _TelaInicialState extends State<TelaInicial> {
                 ),
               ],
             ),
-            )
+            ),
           ),
           ),
+      ),
     );
   }
 
