@@ -29,7 +29,7 @@ class _TelaInicialState extends State<TelaInicial> {
           body: Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
-              color: Colors.amber,
+              color: Colors.transparent,
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,10 +39,6 @@ class _TelaInicialState extends State<TelaInicial> {
                   size: 96.0,
                   color: Colors.white,
                 ),
-              
-              
-            
-
                 
                 const SizedBox(height: 20.0),
 
@@ -100,8 +96,9 @@ class _TelaInicialState extends State<TelaInicial> {
   buildAppBar() {
     return AppBar(
       centerTitle: true,
-      backgroundColor: Colors.purple,
-      title: const Text("Tela Início", style: TextStyle(fontSize: 30)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      title: const Text("BOOK HAVEN", style: TextStyle(fontSize: 25.0)),
     );
   }
 }
