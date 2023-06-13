@@ -1,4 +1,5 @@
 import 'package:app_biblioteca/pages/tela_cadastro.dart';
+import 'package:app_biblioteca/pages/tela_principal.dart';
 import 'package:flutter/material.dart';
 
 class TelaLogin extends StatefulWidget {
@@ -74,7 +75,8 @@ class _TelaLoginState extends State<TelaLogin> {
                 Flexible(
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all<Size>(Size.fromWidth(150)),
+                        fixedSize: MaterialStateProperty.all<Size>(
+                            Size.fromWidth(150)),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.deepPurple),
                         foregroundColor:
@@ -97,11 +99,12 @@ class _TelaLoginState extends State<TelaLogin> {
                         String email = _emailController.text;
                         String password = _passwordController.text;
 
-                        print('Email: $email');
-                        print('Senha: $password');
-
                         _emailController.clear();
                         _passwordController.clear();
+
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => TelaPrincipal()),
+                        );
                       },
                       child: const Text("Login")),
                 ),
@@ -116,7 +119,8 @@ class _TelaLoginState extends State<TelaLogin> {
                 Flexible(
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all<Size>(Size.fromWidth(150)),
+                        fixedSize: MaterialStateProperty.all<Size>(
+                            Size.fromWidth(150)),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.deepPurple),
                         foregroundColor:
@@ -126,7 +130,9 @@ class _TelaLoginState extends State<TelaLogin> {
                               vertical: 12.0, horizontal: 24.0),
                         ),
                         textStyle: MaterialStateProperty.all<TextStyle>(
-                          const TextStyle(fontSize: 16.0,),
+                          const TextStyle(
+                            fontSize: 16.0,
+                          ),
                         ),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(

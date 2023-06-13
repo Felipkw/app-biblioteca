@@ -112,13 +112,13 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           String email = _emailController.text;
                           String password = _passwordController.text;
 
-                          print('Nome: $name');
-                          print('Email: $email');
-                          print('Senha: $password');
-
                           _nameController.clear();
                           _emailController.clear();
                           _passwordController.clear();
+
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => TelaLogin()),
+                          );
                         },
                         child: const Text(
                           "Cadastre-se",
