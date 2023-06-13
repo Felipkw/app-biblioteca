@@ -1,12 +1,12 @@
-import 'package:app_biblioteca/Pages/tela_principal.dart';
+import 'package:app_biblioteca/pages/tela_inicial.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(
     MaterialApp(
-      title: 'Biblioteca',
       debugShowCheckedModeBanner: false,
-      home: TelaPrincipal(),
-    ),
+      home: TelaInicial(),
+    )
   );
 }
