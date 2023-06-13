@@ -1,3 +1,5 @@
+import 'package:app_biblioteca/pages/tela_cadastro.dart';
+import 'package:app_biblioteca/pages/tela_login.dart';
 import 'package:flutter/material.dart';
 
 class TelaInicial extends StatefulWidget {
@@ -59,6 +61,10 @@ class _TelaInicialState extends State<TelaInicial> {
                       ),
                     ),
                     onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const TelaCadastro()),
+                        );
                     },
                     child: const Text("Cadastro")
                 ),
@@ -81,7 +87,12 @@ class _TelaInicialState extends State<TelaInicial> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const TelaLogin()),
+                          );
+                    },
                     child: const Text("Login")
                 ),
               ],

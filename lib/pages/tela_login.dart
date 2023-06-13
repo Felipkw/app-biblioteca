@@ -1,4 +1,4 @@
-import 'package:app_biblioteca/tela_cadastro.dart';
+import 'package:app_biblioteca/pages/tela_cadastro.dart';
 import 'package:flutter/material.dart';
 
 class TelaLogin extends StatefulWidget {
