@@ -52,7 +52,7 @@ class _TelaInicialState extends State<TelaInicial> {
                         const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                       ),
                       textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 25.0),
+                        const TextStyle(fontSize: 16.0),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class _TelaInicialState extends State<TelaInicial> {
                         const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                       ),
                       textStyle: MaterialStateProperty.all<TextStyle>(
-                        const TextStyle(fontSize: 25.0),
+                        const TextStyle(fontSize: 16.0),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
@@ -109,7 +109,6 @@ class _TelaInicialState extends State<TelaInicial> {
       centerTitle: true,
       elevation: 0,
       backgroundColor: Colors.transparent,
-      title: const Text("BOOK HAVEN", style: TextStyle(fontSize: 25.0)),
     );
   }
 }
