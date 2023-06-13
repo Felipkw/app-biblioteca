@@ -1,5 +1,6 @@
+import 'package:app_biblioteca/pages/tela_inicial.dart';
 import 'package:flutter/material.dart';
-import 'package:app_biblioteca/tela_inicial.dart';
+
 
 void main() {
   runApp(
