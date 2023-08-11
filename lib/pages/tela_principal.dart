@@ -1,3 +1,4 @@
+import 'package:app_biblioteca/pages/tela_usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:app_biblioteca/widgets/card_livro.dart';
 
@@ -73,7 +74,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
   List<Livro> acao = [
     Livro(
-        imagem:'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
+        imagem:
+            'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
         titulo: 'One Piece: vol 2',
         valor: '40,00')
   ];
@@ -94,7 +96,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          appBar: buildAppBar(),
+          appBar: buildAppBar(context),
           body: SingleChildScrollView(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -110,11 +112,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  
                   buildLista(listLenght: paraVoce.length, livro: paraVoce),
-                  
                   const SizedBox(height: 30),
-                  
                   const Text(
                     'Talvez você goste',
                     style: TextStyle(
@@ -122,21 +121,22 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                       color: Colors.white,
                     ),
                   ),
-                  
-                  const SizedBox(height: 15,),
-                 
-                  buildLista(listLenght: talvezGoste.length, livro: talvezGoste),
-
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  buildLista(
+                      listLenght: talvezGoste.length, livro: talvezGoste),
                   const SizedBox(height: 30),
-
-                  const Text('Baseado em pesquisas recentes', style: TextStyle(
+                  const Text(
+                    'Baseado em pesquisas recentes',
+                    style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                     ),
                   ),
-
-                  const SizedBox(height: 15,),
-
+                  const SizedBox(
+                    height: 15,
+                  ),
                   buildLista(listLenght: recentes.length, livro: recentes)
                 ]),
           ),
@@ -146,7 +146,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   }
 }
 
-buildAppBar() {
+buildAppBar(BuildContext context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.transparent,
@@ -165,7 +165,11 @@ buildAppBar() {
           Icons.perm_identity,
           size: 16,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const TelaUsuario()),
+          );
+        },
       )
     ],
   );
@@ -173,12 +177,12 @@ buildAppBar() {
 
 buildLista({required int listLenght, required List<Livro> livro}) {
   return Container(
-        height: 160,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: listLenght,
-          separatorBuilder: (context, _) => const SizedBox(width: 12),
-          itemBuilder: (context, index) => livro[index],
-        ),
-      );
+    height: 160,
+    child: ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: listLenght,
+      separatorBuilder: (context, _) => const SizedBox(width: 12),
+      itemBuilder: (context, index) => livro[index],
+    ),
+  );
 }
