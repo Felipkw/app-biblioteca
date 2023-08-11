@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+
 class DBHelper {
   initDB() async {
-    String path = join(await getDatabasesPath(), "livraria.db");
+
+    String path =
+        join(await getDatabasesPath(), "livraria.db");
 
     Database database =
         await openDatabase(path, version: 1, onCreate: _onCreate);
