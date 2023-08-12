@@ -1,16 +1,14 @@
-
-
-import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_sqlite_repository.dart';
+import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_list_repository.dart';
+//import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_sqlite_repository.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario_service.dart';
 
-class UsuarioController{
-
-  UsuarioSQLiteRepository? usuarioRepository;
+class UsuarioController {
+  UsuarioListRepository? usuarioRepository;
   UsuarioService? usuarioService;
 
-  UsuarioController(){
-    usuarioRepository = UsuarioSQLiteRepository();
+  UsuarioController() {
+    usuarioRepository = UsuarioListRepository();
     usuarioService = UsuarioService(usuarioRepository!);
   }
 
@@ -18,6 +16,7 @@ class UsuarioController{
     await usuarioService?.criar(usuario: usuario);
   }
 
-  
-
+  List<Usuario> listar() {
+    return usuarioService!.listar();
+  }
 }

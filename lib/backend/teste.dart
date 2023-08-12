@@ -1,24 +1,32 @@
-import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_sqlite_repository.dart';
+//import 'package:app_biblioteca/backend/database/db_list.dart';
+import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_list_repository.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
-import 'package:app_biblioteca/backend/modules/usuario/validators/usuario_validator.dart';
-
-
+import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 
 void main() {
-  Usuario usuario =
-      Usuario(nome: "João", email: "joao2@mail.com", senha: "12345678");
+  Usuario usuario1 =
+      Usuario(nome: "adelson", email: "adelson@mail.com", senha: "12345678");
 
-  print(usuario.nome);
-  print(usuario.email);
-  print(usuario.senha);
+  Usuario usuario2 =
+      Usuario(nome: "felipe", email: "felipe@mail.com", senha: "12345678");
 
-  UsuarioValidator usuarioValidator = UsuarioValidator();
-  usuarioValidator.fullUsuarioValidator(usuario: usuario);
+  Usuario usuario3 =
+      Usuario(nome: "maria", email: "maria@mail.com", senha: "12345678");
 
-  UsuarioSQLiteRepository usuarioSQLiteRepository = UsuarioSQLiteRepository();
-  usuarioSQLiteRepository.criar(usuario: usuario);
+  UsuarioController usuarioController = UsuarioController();
 
-  
+  usuarioController.criar(usuario: usuario1);
+  usuarioController.criar(usuario: usuario2);
+  usuarioController.criar(usuario: usuario3);
 
-  
+  List<Usuario> listaUsuarios = usuarioController.listar();
+
+  print(listaUsuarios.length);
+
+  for (Usuario usuario in listaUsuarios) {
+    print(usuario.id);
+    print(usuario.nome);
+    print(usuario.email);
+    print(usuario.senha);
+  }
 }
