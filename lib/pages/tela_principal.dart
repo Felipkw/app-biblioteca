@@ -1,6 +1,7 @@
 import 'package:app_biblioteca/pages/tela_usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:app_biblioteca/widgets/card_livro.dart';
+import 'package:app_biblioteca/widgets/drawer_widget.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -96,6 +97,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
+          drawer: DrawerWidget(),
           appBar: buildAppBar(context),
           body: SingleChildScrollView(
             child: Column(
@@ -152,24 +154,23 @@ buildAppBar(BuildContext context) {
     backgroundColor: Colors.transparent,
     elevation: 0,
     title: Text('Início', style: TextStyle(fontSize: 15)),
-    leading: IconButton(
-      icon: Icon(
-        Icons.menu,
-        size: 16,
-      ),
-      onPressed: () {},
+    leading: Builder(
+      builder: (BuildContext context) {
+        return IconButton(
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: Icon(Icons.menu, size: 16,),
+        );
+      },
     ),
     actions: [
       IconButton(
         icon: Icon(
-          Icons.perm_identity,
+          Icons.shopping_cart,
           size: 16,
         ),
-        onPressed: () {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const TelaUsuario()),
-          );
-        },
+        onPressed: () {},
       )
     ],
   );

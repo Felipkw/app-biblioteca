@@ -117,7 +117,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                     ElevatedButton.icon(
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.deepPurple),
+                            MaterialStateProperty.all<Color>(Colors.red),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         fixedSize: MaterialStateProperty.all<Size>(
