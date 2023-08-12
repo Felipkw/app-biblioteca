@@ -166,7 +166,7 @@ buildAppBar(BuildContext context) {
           size: 16,
         ),
         onPressed: () {
-          Navigator.of(context).push(
+          Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const TelaUsuario()),
           );
         },
