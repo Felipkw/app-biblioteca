@@ -17,13 +17,12 @@ class _TelaLoginState extends State<TelaLogin> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isValidEmail(String email) {
-    // Expressão Regular para validar o email
-    // O padrão verifica se o email possui um formato válido
-    // (uma sequência de caracteres seguida de um @, seguida de outra sequência de caracteres, seguida de um ponto e um domínio)
     final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     return emailRegex.hasMatch(email);
   }
+
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +89,17 @@ class _TelaLoginState extends State<TelaLogin> {
                         filled: true,
                         fillColor: Colors.white,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
+                        suffixIcon: IconButton(
+                            icon: Icon(_isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            }),
                       ),
-                      obscureText: true,
+                      obscureText: _isObscure,
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'A senha é obrigatório';
