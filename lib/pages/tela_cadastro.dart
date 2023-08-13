@@ -117,7 +117,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           if (value == null || value.isEmpty) {
                             return 'A senha é obrigatório';
                           } else if (value.length < 8) {
-                            return 'A senha deve ter, no mínimo, 8 caracteres';
+                            return 'A senha deve ter no mínimo 8 caracteres';
                           }
                         },
                       ),
@@ -157,7 +157,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               print(usuario.email);
                               print(usuario.senha);
 
-                              UsuarioController usuarioController = UsuarioController();
+                              UsuarioController usuarioController =
+                                  UsuarioController();
                               usuarioController.criar(usuario: usuario);
 
                               _nomeController.clear();

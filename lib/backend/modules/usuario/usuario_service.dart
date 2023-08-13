@@ -19,4 +19,15 @@ class UsuarioService {
   List<Usuario> listar() {
     return usuarioRepository.listar();
   }
+
+  Future<bool> autenticar(
+      {required String email, required String senha}) async {
+    try {
+      UsuarioValidator().emailValidator(email: email);
+      UsuarioValidator().senhaValidator(senha: senha);
+    } catch (e) {
+      rethrow;
+    }
+    return usuarioRepository.autenticar(email: email, senha: senha);
+  }
 }

@@ -5,7 +5,7 @@ class Usuario {
   late String senha;
   late Stream urlFoto;
 
-  Usuario({int? id, String? urlFoto, required String email, required String nome, required String senha}) {
+  Usuario({int? id, String? urlFoto, required String nome, required String email, required String senha}) {
     this.nome = nome;
     this.email = email;
     this.senha = senha;

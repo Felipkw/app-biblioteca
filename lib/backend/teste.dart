@@ -1,9 +1,9 @@
 //import 'package:app_biblioteca/backend/database/db_list.dart';
-import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_list_repository.dart';
+//import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_list_repository.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 
-void main() {
+Future<void> main() async {
   Usuario usuario1 =
       Usuario(nome: "adelson", email: "adelson@mail.com", senha: "12345678");
 
@@ -24,9 +24,20 @@ void main() {
   print(listaUsuarios.length);
 
   for (Usuario usuario in listaUsuarios) {
+    //usuario.toString;
     print(usuario.id);
     print(usuario.nome);
     print(usuario.email);
     print(usuario.senha);
+    print("\n");
+  }
+
+  print("chegou aqui");
+
+  if (await usuarioController.autenticar(
+      email: "maria@mail.com", senha: "12345678")) {
+    print("dados certos tchow");
+  } else {
+    print("dados errados tchow");
   }
 }

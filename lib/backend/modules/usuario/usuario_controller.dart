@@ -19,4 +19,8 @@ class UsuarioController {
   List<Usuario> listar() {
     return usuarioService!.listar();
   }
+
+  Future<bool> autenticar({required email, required senha}) async {
+    return usuarioRepository!.autenticar(email: email, senha: senha);
+  }
 }

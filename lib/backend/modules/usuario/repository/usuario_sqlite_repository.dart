@@ -3,7 +3,7 @@ import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 import 'package:sqflite/sqflite.dart';
 import 'interface/interface_usuario_repository.dart';
 
-class UsuarioSQLiteRepository implements IUsuarioRepository {
+class UsuarioSQLiteRepository /*implements IUsuarioRepository*/ {
   @override
   Future<void> criar({required Usuario usuario}) async {
     try {
