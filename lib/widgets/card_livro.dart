@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 
-class Livro extends StatefulWidget {
+class CardLivro extends StatefulWidget {
 
-  final String imagem;
-  final String titulo;
-  final String valor;
+  final Livro livro;
 
-  const Livro({
-    required this.imagem,
-    required this.titulo,
-    required this.valor,
+  const CardLivro({
+    required this.livro,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Livro> createState() => _LivroState();
+  State<CardLivro> createState() => _CardLivroState();
 }
 
-class _LivroState extends State<Livro> {
+class _CardLivroState extends State<CardLivro> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,20 +23,20 @@ class _LivroState extends State<Livro> {
         children: [
           Expanded(
             child: Image.network(
-              widget.imagem,
+              widget.livro.urlImagem,
               fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            widget.titulo,
+            widget.livro.titulo,
             style: TextStyle(
               fontSize: 10,
               color: Colors.white,
             ),
           ),
           Text(
-            "R\$ " + widget.valor,
+            "R\$  ${widget.livro.valor}",
             style: TextStyle(
               fontSize: 10,
               color: Colors.white,

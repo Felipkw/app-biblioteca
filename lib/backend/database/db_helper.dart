@@ -28,9 +28,7 @@ class DBHelper {
     CREATE TABLE livros(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
 	    titulo TEXT NOT NULL,
-      autor TEXT NOT NULL,
   	  preco REAL NOT NULL,
-  	  descricao TEXT NOT NULL,
   	  url_imagem TEXT NOT NULL
     );
 

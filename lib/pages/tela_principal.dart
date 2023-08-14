@@ -2,6 +2,8 @@ import 'package:app_biblioteca/pages/tela_usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:app_biblioteca/widgets/card_livro.dart';
 import 'package:app_biblioteca/widgets/drawer_widget.dart';
+import 'package:app_biblioteca/backend/modules/livro/livro_controller.dart';
+import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -10,18 +12,21 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
-  List<Livro> paraVoce = [
-    Livro(
+  LivroController livroController = LivroController();
+  Future<List<Livro>> listaLivros = LivroController().listar();
+/*
+  List<CardLivro> paraVoce = [
+    CardLivro(
         imagem:
             'https://m.media-amazon.com/images/I/511+-lOOtsL._SY344_BO1,204,203,200_.jpg',
         titulo: 'O Hobbit',
         valor: '30,00'),
-    Livro(
+    CardLivro(
         imagem:
             'https://m.media-amazon.com/images/I/41s5nOT9DqL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
         titulo: 'O Manifesto Comunista',
         valor: '10,00'),
-    Livro(
+    CardLivro(
         imagem: 'https://m.media-amazon.com/images/I/511VQoE7CXL._SY346_.jpg',
         titulo: 'Orgulho e Preconceito',
         valor: '30,00'),
@@ -79,7 +84,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
         titulo: 'One Piece: vol 2',
         valor: '40,00')
-  ];
+  ];*/
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -114,7 +119,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  buildLista(listLenght: paraVoce.length, livro: paraVoce),
+                  buildLista(listaLivros: listaLivros),
                   const SizedBox(height: 30),
                   const Text(
                     'Talvez você goste',
@@ -126,8 +131,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  buildLista(
-                      listLenght: talvezGoste.length, livro: talvezGoste),
+                  buildLista(listaLivros: listaLivros),
                   const SizedBox(height: 30),
                   const Text(
                     'Baseado em pesquisas recentes',
@@ -139,7 +143,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  buildLista(listLenght: recentes.length, livro: recentes)
+                  buildLista(listaLivros: listaLivros)
                 ]),
           ),
         ),
@@ -160,7 +164,10 @@ buildAppBar(BuildContext context) {
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
-          icon: Icon(Icons.menu, size: 16,),
+          icon: Icon(
+            Icons.menu,
+            size: 16,
+          ),
         );
       },
     ),
@@ -176,14 +183,29 @@ buildAppBar(BuildContext context) {
   );
 }
 
-buildLista({required int listLenght, required List<Livro> livro}) {
+buildLista({required Future<List<Livro>> listaLivros}) {
   return Container(
     height: 160,
-    child: ListView.separated(
-      scrollDirection: Axis.horizontal,
-      itemCount: listLenght,
-      separatorBuilder: (context, _) => const SizedBox(width: 12),
-      itemBuilder: (context, index) => livro[index],
+    child: FutureBuilder(
+      future: listaLivros,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          var list = snapshot.data!;
+          return ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return CardLivro(
+                livro: list[index],
+              );
+            },
+          );
+        }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     ),
   );
 }

@@ -6,6 +6,11 @@ class LivroController {
   LivroListRepository? livroListRepository;
   LivroService? livroService;
 
+    LivroController() {
+    livroListRepository = LivroListRepository();
+    livroService = LivroService(livroListRepository!);
+  }
+
   Future<List<Livro>> listar() async {
     return livroService!.listar();
   }
