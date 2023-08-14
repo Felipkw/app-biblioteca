@@ -1,3 +1,4 @@
+import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 import 'package:app_biblioteca/pages/tela_cadastro.dart';
 import 'package:app_biblioteca/pages/tela_principal.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +12,17 @@ class TelaLogin extends StatefulWidget {
 
 class _TelaLoginState extends State<TelaLogin> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isValidEmail(String email) {
-    // Expressão Regular para validar o email
-    // O padrão verifica se o email possui um formato válido
-    // (uma sequência de caracteres seguida de um @, seguida de outra sequência de caracteres, seguida de um ponto e um domínio)
     final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     return emailRegex.hasMatch(email);
   }
+
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,6 @@ class _TelaLoginState extends State<TelaLogin> {
                         filled: true,
                         fillColor: Colors.white,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
@@ -81,7 +80,7 @@ class _TelaLoginState extends State<TelaLogin> {
                   const SizedBox(height: 16.0),
                   Flexible(
                     child: TextFormField(
-                      controller: _passwordController,
+                      controller: _senhaController,
                       decoration: InputDecoration(
                         hintText: 'Digite sua senha',
                         labelText: 'Senha',
@@ -90,13 +89,22 @@ class _TelaLoginState extends State<TelaLogin> {
                         filled: true,
                         fillColor: Colors.white,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
+                        suffixIcon: IconButton(
+                            icon: Icon(_isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            }),
                       ),
-                      obscureText: true,
+                      obscureText: _isObscure,
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'A senha é obrigatório';
                         } else if (value.length < 8) {
-                          return 'A senha deve ter, no mínimo, 8 carácteres';
+                          return 'A senha deve ter, no mínimo, 8 caracteres';
                         }
                       },
                     ),
@@ -125,18 +133,26 @@ class _TelaLoginState extends State<TelaLogin> {
                             ),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             String email = _emailController.text;
-                            String password = _passwordController.text;
+                            String senha = _senhaController.text;
 
                             _emailController.clear();
-                            _passwordController.clear();
+                            _senhaController.clear();
 
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => TelaPrincipal()),
-                            );
+                            UsuarioController usuarioController =
+                                UsuarioController();
+
+                            if (await usuarioController.autenticar(
+                                email: email, senha: senha)) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => TelaPrincipal()),
+                              );
+                            } else {
+                              loginErro();
+                            }
                           }
                         },
                         child: const Text("Login")),
@@ -144,7 +160,13 @@ class _TelaLoginState extends State<TelaLogin> {
                   const SizedBox(height: 16.0),
                   Flexible(
                     child: const Text(
-                      "Ainda não possui uma conta? Faça o cadastro",
+                      "Ainda não possui uma conta?",
+                      style: TextStyle(fontSize: 16.0, color: Colors.white),
+                    ),
+                  ),
+                  Flexible(
+                    child: const Text(
+                      "Faça o cadastro",
                       style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
@@ -199,5 +221,23 @@ class _TelaLoginState extends State<TelaLogin> {
       elevation: 0,
       title: const Text("Login", style: TextStyle(fontSize: 15)),
     );
+  }
+
+  loginErro() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(
+                "Erro no login!",
+                style: TextStyle(color: Colors.red),
+              ),
+              content: Text("Seu email e senha não correspondem"),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ));
   }
 }

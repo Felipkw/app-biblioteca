@@ -1,3 +1,5 @@
+import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
+import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 import 'package:app_biblioteca/pages/tela_login.dart';
 import 'package:flutter/material.dart';
 
@@ -9,20 +11,19 @@ class TelaCadastro extends StatefulWidget {
 }
 
 class _TelaCadastroState extends State<TelaCadastro> {
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isValidEmail(String email) {
-    // Expressão Regular para validar o email
-    // O padrão verifica se o email possui um formato válido
-    // (uma sequência de caracteres seguida de um @, seguida de outra sequência de caracteres, seguida de um ponto e um domínio)
     final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     return emailRegex.hasMatch(email);
   }
+
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     const SizedBox(height: 16.0),
                     Flexible(
                       child: TextFormField(
-                        controller: _nameController,
+                        controller: _nomeController,
                         decoration: InputDecoration(
                           hintText: 'Digite como deseja ser chamado',
                           labelText: 'Nome',
@@ -100,7 +101,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     const SizedBox(height: 16.0),
                     Flexible(
                       child: TextFormField(
-                        controller: _passwordController,
+                        controller: _senhaController,
                         decoration: InputDecoration(
                           hintText: 'Digite sua senha',
                           labelText: 'Senha',
@@ -109,13 +110,22 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           filled: true,
                           fillColor: Colors.white,
                           floatingLabelBehavior: FloatingLabelBehavior.never,
+                          suffixIcon: IconButton(
+                            icon: Icon(_isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            }),
                         ),
-                        obscureText: true,
+                        obscureText: _isObscure,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'A senha é obrigatório';
                           } else if (value.length < 8) {
-                            return 'A senha deve ter, no mínimo, 8 carácteres';
+                            return 'A senha deve ter no mínimo 8 caracteres';
                           }
                         },
                       ),
@@ -144,13 +154,24 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              String name = _nameController.text;
+                              String nome = _nomeController.text;
                               String email = _emailController.text;
-                              String password = _passwordController.text;
+                              String senha = _senhaController.text;
 
-                              _nameController.clear();
+                              Usuario usuario = Usuario(
+                                  nome: nome, email: email, senha: senha);
+
+                              print(usuario.nome);
+                              print(usuario.email);
+                              print(usuario.senha);
+
+                              UsuarioController usuarioController =
+                                  UsuarioController();
+                              usuarioController.criar(usuario: usuario);
+
+                              _nomeController.clear();
                               _emailController.clear();
-                              _passwordController.clear();
+                              _senhaController.clear();
 
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
