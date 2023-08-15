@@ -141,17 +141,32 @@ class _TelaLoginState extends State<TelaLogin> {
                             _emailController.clear();
                             _senhaController.clear();
 
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            );
+
+                            bool autenticado = false;
+
                             UsuarioController usuarioController =
                                 UsuarioController();
 
-                            if (await usuarioController.autenticar(
-                                email: email, senha: senha)) {
+                            autenticado = await usuarioController.autenticar(
+                                email: email, senha: senha);
+
+                            Navigator.of(context).pop();
+
+                            if (autenticado) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => TelaPrincipal()),
                               );
                             } else {
-                              loginErro();
+                              _autenticadoFalse();
                             }
                           }
                         },
@@ -223,7 +238,7 @@ class _TelaLoginState extends State<TelaLogin> {
     );
   }
 
-  loginErro() {
+  _autenticadoFalse() {
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
