@@ -189,14 +189,14 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
       ),
     );
   }
-}
+
 
 buildAppBar() {
   return AppBar(
     centerTitle: true,
     elevation: 0,
     backgroundColor: Colors.transparent,
-    title: Text('Livro', style: TextStyle(fontSize: 15)),
+    title: Text(livro.titulo, style: TextStyle(fontSize: 15)),
     actions: [
       IconButton(
         icon: Icon(
@@ -207,4 +207,5 @@ buildAppBar() {
       ),
     ],
   );
+}
 }
