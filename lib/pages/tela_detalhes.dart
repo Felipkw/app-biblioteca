@@ -79,7 +79,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             ),
                             Flexible(
                               child: Text(
-                                "R\$ ${widget.cardLivro.valor}0",
+                                "R\$ ${widget.cardLivro.valor}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 20,
@@ -150,10 +150,6 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const TelaCadastro()),
-                          );
                         },
                         child: const Text("Comprar")),
                     const SizedBox(height: 20.0),
@@ -200,7 +196,7 @@ buildAppBar() {
     centerTitle: true,
     elevation: 0,
     backgroundColor: Colors.transparent,
-    title: Text('Início', style: TextStyle(fontSize: 15)),
+    title: Text('Livro', style: TextStyle(fontSize: 15)),
     actions: [
       IconButton(
         icon: Icon(
