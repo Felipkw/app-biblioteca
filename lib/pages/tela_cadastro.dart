@@ -111,14 +111,14 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           fillColor: Colors.white,
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           suffixIcon: IconButton(
-                            icon: Icon(_isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                _isObscure = !_isObscure;
-                              });
-                            }),
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              }),
                         ),
                         obscureText: _isObscure,
                         validator: (String? value) {
@@ -152,7 +152,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               ),
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               String nome = _nomeController.text;
                               String email = _emailController.text;
@@ -165,9 +165,21 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               print(usuario.email);
                               print(usuario.senha);
 
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                              );
+
                               UsuarioController usuarioController =
                                   UsuarioController();
-                              usuarioController.criar(usuario: usuario);
+
+                              await usuarioController.criar(usuario: usuario);
+
+                              Navigator.of(context).pop();
 
                               _nomeController.clear();
                               _emailController.clear();
@@ -191,6 +203,15 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     const Flexible(
                       child: Text(
                         "Já possui uma conta? Faça o Login",
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const Flexible(
+                      child: Text(
+                        "Faça o Login",
                         style: TextStyle(
                             fontSize: 14.0,
                             color: Colors.white,
