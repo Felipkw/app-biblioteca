@@ -26,16 +26,32 @@ class UsuarioListRepository implements IUsuarioRepository {
   }
 
   @override
-  Future<bool> autenticar({required String email, required String senha}) async {
+  Future<bool> autenticar(
+      {required String email, required String senha}) async {
     bool autenticado = false;
 
-    for (Usuario usuario in dbList.usuarios){
-      if(usuario.email == email && usuario.senha == senha){
+    for (Usuario usuario in dbList.usuarios) {
+      if (usuario.email == email && usuario.senha == senha) {
         autenticado = true;
       }
     }
-    
+
     await Future.delayed(const Duration(seconds: 2));
     return autenticado;
+  }
+
+  @override
+  Future<bool> emailExiste({required String email}) async {
+    bool existe = false;
+
+    for (Usuario usuario in dbList.usuarios) {
+      if (usuario.email == email) {
+        existe = true;
+      }
+    }
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    return existe;
   }
 }

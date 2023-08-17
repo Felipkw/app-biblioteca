@@ -3,7 +3,7 @@ class Usuario {
   late String nome;
   late String email;
   late String senha;
-  late Stream urlFoto;
+  late String urlFoto;
 
   Usuario({int? id, String? urlFoto, required String nome, required String email, required String senha}) {
     this.nome = nome;
@@ -15,7 +15,7 @@ class Usuario {
     }
 
     if (urlFoto != null) {
-      this.urlFoto = urlFoto as Stream;
+      this.urlFoto = urlFoto;
     }
   }
 

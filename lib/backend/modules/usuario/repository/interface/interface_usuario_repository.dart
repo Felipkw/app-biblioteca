@@ -7,4 +7,5 @@ abstract class IUsuarioRepository {
   //Future<Usuario> pesquisar({required String id});
   //Future<void> atualizar({required Usuario updatedUsuario, required String id});
   //Future<void> deletar({required String id});
+  Future<bool> emailExiste({required String email});
 }

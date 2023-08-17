@@ -30,4 +30,17 @@ class UsuarioService {
     }
     return usuarioRepository.autenticar(email: email, senha: senha);
   }
+
+
+  Future<bool> emailExiste({required String email}) async {
+
+    try{
+      UsuarioValidator().emailValidator(email: email);
+    } catch(e){
+      rethrow;
+    }
+
+    return usuarioRepository.emailExiste(email: email);
+
+  }
 }

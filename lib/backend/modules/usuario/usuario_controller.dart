@@ -21,6 +21,10 @@ class UsuarioController {
   }
 
   Future<bool> autenticar({required email, required senha}) async {
-    return usuarioRepository!.autenticar(email: email, senha: senha);
+    return usuarioService!.autenticar(email: email, senha: senha);
+  }
+
+  Future<bool> emailExiste({required String email}) {
+    return usuarioService!.emailExiste(email: email);
   }
 }
