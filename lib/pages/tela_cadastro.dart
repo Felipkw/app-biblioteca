@@ -157,7 +157,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               String nome = _nomeController.text;
                               String email = _emailController.text;
                               String senha = _senhaController.text;
-
                               Usuario usuario = Usuario(
                                   nome: nome, email: email, senha: senha);
 
@@ -177,18 +176,28 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               UsuarioController usuarioController =
                                   UsuarioController();
 
-                              await usuarioController.criar(usuario: usuario);
+                              bool emailExiste = await usuarioController
+                                  .emailExiste(email: usuario.email);
 
-                              Navigator.of(context).pop();
+                              if (emailExiste) {
 
-                              _nomeController.clear();
-                              _emailController.clear();
-                              _senhaController.clear();
+                                Navigator.of(context, rootNavigator: true).pop();
 
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => TelaLogin()),
-                              );
+                                _emailExistente();
+
+                                
+                              } else {
+
+                                Navigator.of(context, rootNavigator: true).pop();
+
+                                await usuarioController.criar(usuario: usuario);
+
+                                _nomeController.clear();
+                                _emailController.clear();
+                                _senhaController.clear();
+
+                                _cadastroSucesso();
+                              }
                             }
                           },
                           child: const Text(
@@ -262,6 +271,45 @@ class _TelaCadastroState extends State<TelaCadastro> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text("Cadastrar", style: TextStyle(fontSize: 15)),
+    );
+  }
+
+  _cadastroSucesso() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(
+                "Registrado com sucesso!",
+                style: TextStyle(color: Colors.blueAccent),
+              ),
+              content: Text("Fique a vontade para realizar o login"),
+              actions: [
+                ElevatedButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      print("Funcionou");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => TelaLogin()));
+                    }),
+              ],
+            ));
+  }
+
+  _emailExistente() {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Endereço de e-mail já cadastrado!",
+            style: TextStyle(color: Colors.red)),
+        content: Text(
+            "Por favor, faça login ou use um e-mail diferente para se cadastrar"),
+        actions: [
+          TextButton(
+            child: Text('OK'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ),
     );
   }
 }
