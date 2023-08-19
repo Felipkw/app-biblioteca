@@ -74,6 +74,7 @@ class _TelaLoginState extends State<TelaLogin> {
                         } else if (!_isValidEmail(value)) {
                           return 'O e-mail precisa ser válido';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -106,6 +107,7 @@ class _TelaLoginState extends State<TelaLogin> {
                         } else if (value.length < 8) {
                           return 'A senha deve ter, no mínimo, 8 caracteres';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -114,7 +116,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           fixedSize: MaterialStateProperty.all<Size>(
-                              Size.fromWidth(150)),
+                              const Size.fromWidth(150)),
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.deepPurple),
                           foregroundColor:
@@ -173,14 +175,14 @@ class _TelaLoginState extends State<TelaLogin> {
                         child: const Text("Login")),
                   ),
                   const SizedBox(height: 16.0),
-                  Flexible(
-                    child: const Text(
+                  const Flexible(
+                    child: Text(
                       "Ainda não possui uma conta?",
                       style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
-                  Flexible(
-                    child: const Text(
+                  const Flexible(
+                    child: Text(
                       "Faça o cadastro",
                       style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
@@ -190,7 +192,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           fixedSize: MaterialStateProperty.all<Size>(
-                              Size.fromWidth(150)),
+                              const Size.fromWidth(150)),
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.deepPurple),
                           foregroundColor:
@@ -242,14 +244,14 @@ class _TelaLoginState extends State<TelaLogin> {
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text(
+              title: const Text(
                 "Erro no login!",
                 style: TextStyle(color: Colors.red),
               ),
-              content: Text("Seu email e senha não correspondem"),
+              content: const Text("Seu email e senha não correspondem"),
               actions: [
                 TextButton(
-                  child: Text('OK'),
+                  child: const Text('OK'),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],

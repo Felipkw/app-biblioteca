@@ -1,10 +1,9 @@
-import 'package:app_biblioteca/backend/database/db_list.dart';
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 import 'package:app_biblioteca/pages/tela_usuario.dart';
+import 'package:app_biblioteca/widgets/card_livro_usuario.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/modules/livro/livro_controller.dart';
-import '../widgets/card_livro.dart';
 
 class TelaLivrosUsuario extends StatefulWidget {
   const TelaLivrosUsuario({super.key});
@@ -14,10 +13,9 @@ class TelaLivrosUsuario extends StatefulWidget {
 }
 
 class _TelaLivrosUsuarioState extends State<TelaLivrosUsuario> {
-
   LivroController livroController = LivroController();
   Future<List<Livro>> listaLivros = LivroController().listar();
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,17 +59,18 @@ class _TelaLivrosUsuarioState extends State<TelaLivrosUsuario> {
                     const SizedBox(
                       height: 50,
                     ),
-                    GridView.count(
-                      padding: EdgeInsets.all(10),
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 5,
+                    /*GridView.count(
+                      padding: const EdgeInsets.all(10),
+                      //mainAxisSpacing: 10,
+                      //crossAxisSpacing: 5,
                       crossAxisCount: 2,
                       shrinkWrap: true,
-                      children: lis
-                    )
+                      children: [_buildLista(listaLivros: listaLivros)],
+                    )*/
+                    _buildLista(listaLivros: listaLivros)
                   ],
                 ),
-                ),
+              ),
             ),
           ),
         ),
@@ -108,27 +107,36 @@ buildAppBar(BuildContext context) {
   );
 }
 
-buildLista({required Future<List<Livro>> listaLivros}) {
-  return  FutureBuilder(
+_buildLista({required Future<List<Livro>> listaLivros}) {
+  return Container(
+    height: 600,
+    //width: 500,
+    child: FutureBuilder(
       future: listaLivros,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var list = snapshot.data!;
-          return ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return CardLivro(
-                livro: list[index],
-              );
-            },
-          );
+          return GridView.builder(
+              itemCount: list.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                //mainAxisSpacing: 20,
+              ),
+              itemBuilder: (context, index) {
+                return Container(
+                  //height: 130,
+                  //width: 500,
+                  child: CardLivroUsuario(
+                    livro: list[index],
+                  ),
+                );
+              });
         }
         return const Center(
           child: CircularProgressIndicator(),
         );
       },
-    
+    ),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:app_biblioteca/pages/tela_inicial.dart';
+import 'package:app_biblioteca/pages/tela_livros_usuario.dart';
 import 'package:app_biblioteca/pages/tela_usuario.dart';
 import 'package:flutter/material.dart';
 
@@ -99,7 +100,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           leading: Icon(Icons.book, color: Colors.white, size: 20),
           title: Text('Meus Livros',
               style: TextStyle(color: Colors.white, fontSize: 16)),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => const TelaLivrosUsuario()),
+              (Route<dynamic> route) => false,
+            );
+          },
         ),
         SizedBox(height: 8),
         ListTile(

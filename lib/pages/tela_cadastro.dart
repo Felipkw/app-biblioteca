@@ -73,6 +73,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           if (value == null || value.isEmpty) {
                             return 'O nome é obrigatório';
                           }
+                          return null;
                         },
                       ),
                     ),
@@ -95,6 +96,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           } else if (!_isValidEmail(value)) {
                             return 'O e-mail precisa ser válido';
                           }
+                          return null;
                         },
                       ),
                     ),
@@ -127,6 +129,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           } else if (value.length < 8) {
                             return 'A senha deve ter no mínimo 8 caracteres';
                           }
+                          return null;
                         },
                       ),
                     ),
@@ -159,10 +162,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               String senha = _senhaController.text;
                               Usuario usuario = Usuario(
                                   nome: nome, email: email, senha: senha);
-
-                              print(usuario.nome);
-                              print(usuario.email);
-                              print(usuario.senha);
 
                               showDialog(
                                 context: context,
@@ -278,18 +277,17 @@ class _TelaCadastroState extends State<TelaCadastro> {
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text(
+              title: const Text(
                 "Registrado com sucesso!",
                 style: TextStyle(color: Colors.blueAccent),
               ),
-              content: Text("Fique a vontade para realizar o login"),
+              content: const Text("Fique a vontade para realizar o login"),
               actions: [
                 ElevatedButton(
-                    child: Text('OK'),
+                    child: const Text('OK'),
                     onPressed: () {
-                      print("Funcionou");
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TelaLogin()));
+                          MaterialPageRoute(builder: (context) => const TelaLogin()));
                     }),
               ],
             ));
@@ -299,13 +297,13 @@ class _TelaCadastroState extends State<TelaCadastro> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Endereço de e-mail já cadastrado!",
+        title: const Text("Endereço de e-mail já cadastrado!",
             style: TextStyle(color: Colors.red)),
-        content: Text(
+        content: const Text(
             "Por favor, faça login ou use um e-mail diferente para se cadastrar"),
         actions: [
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],

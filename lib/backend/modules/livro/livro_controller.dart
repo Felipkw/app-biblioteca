@@ -6,7 +6,7 @@ class LivroController {
   LivroListRepository? livroListRepository;
   LivroService? livroService;
 
-    LivroController() {
+  LivroController() {
     livroListRepository = LivroListRepository();
     livroService = LivroService(livroListRepository!);
   }

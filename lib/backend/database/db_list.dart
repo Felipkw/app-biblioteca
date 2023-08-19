@@ -81,6 +81,22 @@ class DBList {
             'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
         titulo: 'One Piece: vol 2',
         valor: 40.00);
+    Livro livro13 = Livro(
+        urlImagem:
+            'https://m.media-amazon.com/images/I/511+-lOOtsL._SY344_BO1,204,203,200_.jpg',
+        titulo: 'O Hobbit',
+        valor: 30.00);
+
+    Livro livro14 = Livro(
+        urlImagem:
+            'https://m.media-amazon.com/images/I/41s5nOT9DqL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
+        titulo: 'O Manifesto Comunista',
+        valor: 10.00);
+    Livro livro15 = Livro(
+        urlImagem:
+            'https://m.media-amazon.com/images/I/511VQoE7CXL._SY346_.jpg',
+        titulo: 'Orgulho e Preconceito',
+        valor: 30.00);
 
     livros.add(livro1);
     livros.add(livro2);
@@ -94,5 +110,8 @@ class DBList {
     livros.add(livro10);
     livros.add(livro11);
     livros.add(livro12);
+    livros.add(livro13);
+    livros.add(livro14);
+    livros.add(livro15);
   }
 }
