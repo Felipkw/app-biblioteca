@@ -14,77 +14,7 @@ class TelaPrincipal extends StatefulWidget {
 class _TelaPrincipalState extends State<TelaPrincipal> {
   LivroController livroController = LivroController();
   Future<List<Livro>> listaLivros = LivroController().listar();
-/*
-  List<CardLivro> paraVoce = [
-    CardLivro(
-        imagem:
-            'https://m.media-amazon.com/images/I/511+-lOOtsL._SY344_BO1,204,203,200_.jpg',
-        titulo: 'O Hobbit',
-        valor: '30,00'),
-    CardLivro(
-        imagem:
-            'https://m.media-amazon.com/images/I/41s5nOT9DqL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        titulo: 'O Manifesto Comunista',
-        valor: '10,00'),
-    CardLivro(
-        imagem: 'https://m.media-amazon.com/images/I/511VQoE7CXL._SY346_.jpg',
-        titulo: 'Orgulho e Preconceito',
-        valor: '30,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51olydUbI6L._SX346_BO1,204,203,200_.jpg',
-        titulo: 'One Piece: vol 1',
-        valor: '50,00'),
-  ];
 
-  List<Livro> talvezGoste = [
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51EZZWkTECL._SX331_BO1,204,203,200_.jpg',
-        titulo: 'O Silmarillon',
-        valor: '40,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/41afCn3PQUL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        titulo: 'O Pequeno Princípe',
-        valor: '20,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/516VOgxwg2L._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        titulo: 'A garota do lago',
-        valor: '15,00'),
-  ];
-
-  List<Livro> recentes = [
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51xJXGttg8L._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        titulo: 'Evangélion',
-        valor: '10,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
-        titulo: 'One Piece: vol 2',
-        valor: '40,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/41897yAI4LL._SY344_BO1,204,203,200_QL70_ML2_.jpg',
-        titulo: 'Harry Potter e a Pedra Filosofal',
-        valor: '30,00'),
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51olydUbI6L._SX346_BO1,204,203,200_.jpg',
-        titulo: 'One Piece',
-        valor: '50,00'),
-  ];
-
-  List<Livro> acao = [
-    Livro(
-        imagem:
-            'https://m.media-amazon.com/images/I/51rgk+G0qKL._SY344_BO1,204,203,200_.jpg',
-        titulo: 'One Piece: vol 2',
-        valor: '40,00')
-  ];*/
   @override
   Widget build(BuildContext context) {
     return SafeArea(

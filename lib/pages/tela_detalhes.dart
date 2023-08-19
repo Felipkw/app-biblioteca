@@ -26,7 +26,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
@@ -57,7 +57,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 40,
                       ),
                       Flexible(
@@ -68,28 +68,28 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             Text(
                               widget.cardLivro.titulo,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Flexible(
                               child: Text(
                                 "R\$ ${widget.cardLivro.valor}",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 10,),
-                            Flexible(
+                            const SizedBox(height: 10,),
+                            const Flexible(
                               child: SizedBox(
                                   height: 100,
                                   width: 1000,
@@ -104,10 +104,10 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                       ),
                       const SizedBox(height: 20.0),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Flexible(
                           child: SizedBox(
@@ -196,10 +196,10 @@ buildAppBar() {
     centerTitle: true,
     elevation: 0,
     backgroundColor: Colors.transparent,
-    title: Text(livro.titulo, style: TextStyle(fontSize: 15)),
+    title: Text(livro.titulo, style: const TextStyle(fontSize: 15)),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.menu,
           size: 16,
         ),

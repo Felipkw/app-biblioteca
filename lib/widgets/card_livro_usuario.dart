@@ -1,20 +1,18 @@
+import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 import 'package:app_biblioteca/pages/tela_detalhes.dart';
 import 'package:flutter/material.dart';
-import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 
-class CardLivro extends StatefulWidget {
+class CardLivroUsuario extends StatefulWidget {
+  
   final Livro livro;
 
-  const CardLivro({
-    required this.livro,
-    Key? key,
-  }) : super(key: key);
+  const CardLivroUsuario({required this.livro, Key? key}) : super(key: key);
 
   @override
-  State<CardLivro> createState() => _CardLivroState();
+  _CardLivroUsuarioState createState() => _CardLivroUsuarioState();
 }
 
-class _CardLivroState extends State<CardLivro> {
+class _CardLivroUsuarioState extends State<CardLivroUsuario> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -23,13 +21,13 @@ class _CardLivroState extends State<CardLivro> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
-            return Center(
+            return const Center(
                 child: CircularProgressIndicator(),
               );
             
           },
         );
-        new Future.delayed(new Duration(seconds: 1), () {
+        Future.delayed(new Duration(seconds: 1), () {
           Navigator.pop(context);
           Navigator.push(
             context,
@@ -43,6 +41,7 @@ class _CardLivroState extends State<CardLivro> {
       },
       child: Container(
         width: 130,
+        //height: 200,
         child: Column(
           children: [
             Expanded(
@@ -54,18 +53,13 @@ class _CardLivroState extends State<CardLivro> {
             const SizedBox(height: 4),
             Text(
               widget.livro.titulo,
-              style: TextStyle(
-                fontSize: 10,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 12,
                 color: Colors.white,
               ),
             ),
-            Text(
-              "R\$  ${widget.livro.valor}",
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white,
-              ),
-            ),
+            const SizedBox(height: 6),
           ],
         ),
       ),
