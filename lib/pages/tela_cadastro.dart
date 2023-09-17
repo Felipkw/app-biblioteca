@@ -160,7 +160,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               String nome = _nomeController.text;
                               String email = _emailController.text;
                               String senha = _senhaController.text;
-                              Usuario usuario = Usuario(
+                              Usuario usuario = Usuario.cadastro(
                                   nome: nome, email: email, senha: senha);
 
                               showDialog(
@@ -175,21 +175,19 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               UsuarioController usuarioController =
                                   UsuarioController();
 
-                              bool emailExiste = await usuarioController
-                                  .emailExiste(email: usuario.email);
+                              bool? usuarioCriado = await usuarioController
+                                  .criar(usuario: usuario);
 
-                              if (emailExiste) {
+                                  print("ahahahahhaahhahah");
 
-                                Navigator.of(context, rootNavigator: true).pop();
+                              if (usuarioCriado!) {
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
 
                                 _emailExistente();
-
-                                
                               } else {
-
-                                Navigator.of(context, rootNavigator: true).pop();
-
-                                await usuarioController.criar(usuario: usuario);
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
 
                                 _nomeController.clear();
                                 _emailController.clear();
@@ -286,8 +284,10 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 ElevatedButton(
                     child: const Text('OK'),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const TelaLogin()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TelaLogin()));
                     }),
               ],
             ));

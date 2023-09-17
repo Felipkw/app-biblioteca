@@ -23,6 +23,27 @@ $ flutter run -d web-server --web-hostname=0.0.0.0 --web-port=3000
 
 <br>
 
+## API
+
+### 1. Clone o repositório da API 
+~~~sh
+$ git clone https://github.com/adelsonsljunior/pmov-bookstore-api.git
+~~~
+
+### 2. Entre no diretório
+~~~sh
+$ cd pmov-bookstore-api/
+~~~
+
+### 3. Execute a api
+~~~sh
+$ sh application_up.sh
+~~~
+
+<br>
+
+<br>
+
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 

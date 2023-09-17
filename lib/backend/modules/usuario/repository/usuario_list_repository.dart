@@ -2,7 +2,7 @@ import 'package:app_biblioteca/backend/database/db_list.dart';
 import 'package:app_biblioteca/backend/modules/usuario/repository/interface/interface_usuario_repository.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 
-class UsuarioListRepository implements IUsuarioRepository {
+class UsuarioListRepository /*implements IUsuarioRepository*/ {
   late DBList dbList;
 
   UsuarioListRepository() {

@@ -7,17 +7,19 @@ class UsuarioService {
 
   UsuarioService(this.usuarioRepository);
 
-  Future<void> criar({required Usuario usuario}) async {
+  Future<bool> criar({required Usuario usuario}) async {
     try {
       UsuarioValidator().fullUsuarioValidator(usuario: usuario);
     } catch (e) {
       rethrow;
     }
-    await usuarioRepository.criar(usuario: usuario);
-  }
+    Usuario usuarioCriado = await usuarioRepository.criar(usuario: usuario);
 
-  List<Usuario> listar() {
-    return usuarioRepository.listar();
+    if (usuarioCriado != null) {
+      return false;
+    }
+    
+    return true;
   }
 
   Future<bool> autenticar(
@@ -29,18 +31,5 @@ class UsuarioService {
       rethrow;
     }
     return usuarioRepository.autenticar(email: email, senha: senha);
-  }
-
-
-  Future<bool> emailExiste({required String email}) async {
-
-    try{
-      UsuarioValidator().emailValidator(email: email);
-    } catch(e){
-      rethrow;
-    }
-
-    return usuarioRepository.emailExiste(email: email);
-
   }
 }
