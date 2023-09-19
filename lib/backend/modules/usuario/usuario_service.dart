@@ -15,7 +15,7 @@ class UsuarioService {
     }
     Usuario usuarioCriado = await usuarioRepository.criar(usuario: usuario);
 
-    if (usuarioCriado != null) {
+    if (usuarioCriado == null) {
       return false;
     }
     
