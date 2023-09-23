@@ -33,6 +33,6 @@ class Usuario {
     nome = json['name'];
     email = json['email'];
     senha = json['senha'];
-    urlFoto = json['url_fhto'];
+    urlFoto = json['url_foto'];
   }
 }

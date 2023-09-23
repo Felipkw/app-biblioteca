@@ -160,7 +160,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                               String nome = _nomeController.text;
                               String email = _emailController.text;
                               String senha = _senhaController.text;
-                              Usuario usuario = Usuario(
+                              Usuario usuario = Usuario.cadastro(
                                   nome: nome, email: email, senha: senha);
 
                               showDialog(
@@ -179,15 +179,13 @@ class _TelaCadastroState extends State<TelaCadastro> {
                                   .emailExiste(email: usuario.email);
 
                               if (emailExiste) {
-
-                                Navigator.of(context, rootNavigator: true).pop();
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
 
                                 _emailExistente();
-
-                                
                               } else {
-
-                                Navigator.of(context, rootNavigator: true).pop();
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
 
                                 await usuarioController.criar(usuario: usuario);
 
@@ -286,8 +284,10 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 ElevatedButton(
                     child: const Text('OK'),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const TelaLogin()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TelaLogin()));
                     }),
               ],
             ));
