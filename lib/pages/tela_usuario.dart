@@ -1,5 +1,12 @@
+import 'dart:io';
+import 'package:app_biblioteca/widgets/image_default_widget.dart';
+import 'package:app_biblioteca/widgets/image_widget.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:app_biblioteca/pages/tela_principal.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 class TelaUsuario extends StatefulWidget {
   const TelaUsuario({super.key});
@@ -9,6 +16,7 @@ class TelaUsuario extends StatefulWidget {
 }
 
 class _TelaUsuarioState extends State<TelaUsuario> {
+  File? image;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,26 +40,18 @@ class _TelaUsuarioState extends State<TelaUsuario> {
               child: Flexible(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 15,
-                    ),
-                    CircleAvatar(
-                      radius: 75,
-                      backgroundColor: Colors.black,
-                      backgroundImage: NetworkImage(
-                          'https://64.media.tumblr.com/4dcfac158beb80938140ff6965eb56e1/681395bdf23060e5-d0/s1280x1920/65a85181b7fd6ae0c8097323f11bcd3fd875a705.jpg'),
-                    ),
+                    SizedBox(height: 15),
+                    
+                  image != null
+                        ? ImageWidget(image: image!, onClicked: (source) => pickImage(source))
+                        : ImageDefaultWidget(onClicked: (source) => pickImage(source)),
+                  
                     SizedBox(height: 10),
                     Text(
                       'Nome de usuário',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
-                    SizedBox(
-                      height: 50,
-                    ),
+                    SizedBox(height: 50),
                     ElevatedButton.icon(
                       style: ButtonStyle(
                         backgroundColor:
@@ -153,6 +153,26 @@ class _TelaUsuarioState extends State<TelaUsuario> {
       ),
     );
   }
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final userImage = await saveImagePermanently(image.path);
+      setState(() => this.image = userImage);
+    } on PlatformException catch (e) {
+      print('Fail in pick image $e');
+    }
+  }
+}
+
+Future<File> saveImagePermanently(String imagePath) async {
+  final directory = await getApplicationDocumentsDirectory();
+  final name = basename(imagePath);
+  final image = File('${directory.path}/$name');
+
+  return File(imagePath).copy(image.path);
 }
 
 buildAppBar(BuildContext context) {
