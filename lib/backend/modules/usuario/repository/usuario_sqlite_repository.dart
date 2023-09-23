@@ -1,7 +1,6 @@
-import 'package:app_biblioteca/backend/database/de_helper.dart';
+import 'package:app_biblioteca/backend/database/db_helper.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 import 'package:sqflite/sqlite_api.dart';
-
 import './interface/interface_usuario_repository.dart';
 
 class UsuarioSqliteRepository implements IUsuarioRepository {
@@ -15,7 +14,7 @@ class UsuarioSqliteRepository implements IUsuarioRepository {
   criar({required Usuario usuario}) async {
     DBHelper dbHelper = DBHelper();
     Database db = await dbHelper.initDB();
-    db.insert('usuarios', usuario.toJson());
+    db.insert('usuarios', usuario.toJsonCadastro());
 
     print("USUARIO CRIADO COM SUCESSO");
   }

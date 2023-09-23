@@ -28,6 +28,16 @@ class Usuario {
     return data;
   }
 
+   Map<String, dynamic> toJsonCadastro() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+
+    data['nome'] = nome;
+    data['email'] = email;
+    data['senha'] = senha;
+
+    return data;
+  }
+
   Usuario.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['name'];

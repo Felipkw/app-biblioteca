@@ -1,5 +1,5 @@
 //import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_list_repository.dart';
-import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_sqlite_repositoty.dart';
+import 'package:app_biblioteca/backend/modules/usuario/repository/usuario_sqlite_repository.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario_service.dart';
 
