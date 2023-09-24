@@ -6,7 +6,6 @@ import './interface/interface_usuario_repository.dart';
 class UsuarioSqliteRepository implements IUsuarioRepository {
   @override
   Future<bool> autenticar({required String email, required String senha}) {
-    // TODO: implement autenticar
     throw UnimplementedError();
   }
 
@@ -15,8 +14,6 @@ class UsuarioSqliteRepository implements IUsuarioRepository {
     DBHelper dbHelper = DBHelper();
     Database db = await dbHelper.initDB();
     db.insert('usuarios', usuario.toJsonCadastro());
-
-    print("USUARIO CRIADO COM SUCESSO");
   }
 
   @override

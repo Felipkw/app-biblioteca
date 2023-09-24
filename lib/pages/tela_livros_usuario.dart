@@ -108,9 +108,8 @@ buildAppBar(BuildContext context) {
 }
 
 _buildLista({required Future<List<Livro>> listaLivros}) {
-  return Container(
+  return SizedBox(
     height: 600,
-    //width: 500,
     child: FutureBuilder(
       future: listaLivros,
       builder: (context, snapshot) {
@@ -121,15 +120,10 @@ _buildLista({required Future<List<Livro>> listaLivros}) {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 10,
-                //mainAxisSpacing: 20,
               ),
               itemBuilder: (context, index) {
-                return Container(
-                  //height: 130,
-                  //width: 500,
-                  child: CardLivroUsuario(
+                return CardLivroUsuario(
                     livro: list[index],
-                  ),
                 );
               });
         }

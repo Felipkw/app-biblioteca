@@ -23,13 +23,12 @@ class _CardLivroState extends State<CardLivro> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
-            return Center(
-                child: CircularProgressIndicator(),
-              );
-            
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           },
         );
-        new Future.delayed(new Duration(seconds: 1), () {
+         Future.delayed(const Duration(seconds: 1), () {
           Navigator.pop(context);
           Navigator.push(
             context,
@@ -41,34 +40,36 @@ class _CardLivroState extends State<CardLivro> {
           );
         });
       },
-      child: Container(
-        width: 130,
-        child: Column(
-          children: [
-            Expanded(
-              child: Image.network(
-                widget.livro.urlImagem,
-                fit: BoxFit.cover,
+      child: SizedBox(
+          width: 140,
+          child: Column(
+            children: [
+              Expanded(
+                child: Image.network(
+                  widget.livro.urlImagem,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              widget.livro.titulo,
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white,
+              const SizedBox(height: 4),
+              Text(
+                widget.livro.titulo.length > 17 ?
+                '${widget.livro.titulo.substring(0, 17)}...'
+                : widget.livro.titulo,
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              "R\$  ${widget.livro.preco}",
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white,
+              Text(
+                "R\$  ${widget.livro.preco}",
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
     );
   }
 }

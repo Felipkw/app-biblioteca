@@ -13,14 +13,11 @@ class UsuarioListRepository implements IUsuarioRepository {
   Future<void> criar({required Usuario usuario}) async {
     await Future.delayed(const Duration(seconds: 2));
     usuario.id = dbList.usuarios.length + 1;
-    print(usuario.id);
-    //print(usuario.toString());
+
     dbList.usuarios.add(usuario);
 
-    print("usuario cadastrado");
   }
 
-  @override
   List<Usuario> listar() {
     return dbList.usuarios;
   }

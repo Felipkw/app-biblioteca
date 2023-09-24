@@ -23,14 +23,14 @@ class Livro {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
-    data['id'] = this.id;
-    data['titulo'] = this.titulo;
-    data['autor'] = this.autor;
-    data['preco'] = this.preco;
-    data['descricao'] = this.descricao;
-    data['url_imagem'] = this.urlImagem;
-    data['numero_paginas'] = this.numPaginas;
-    data['ano_publicado'] = this.anoPublicado;
+    data['id'] = id;
+    data['titulo'] = titulo;
+    data['autor'] = autor;
+    data['preco'] = preco;
+    data['descricao'] = descricao;
+    data['url_imagem'] = urlImagem;
+    data['numero_paginas'] = numPaginas;
+    data['ano_publicado'] = anoPublicado;
 
     return data; 
   }

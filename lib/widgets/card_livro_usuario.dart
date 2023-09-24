@@ -3,13 +3,15 @@ import 'package:app_biblioteca/pages/tela_detalhes.dart';
 import 'package:flutter/material.dart';
 
 class CardLivroUsuario extends StatefulWidget {
-  
   final Livro livro;
 
-  const CardLivroUsuario({required this.livro, Key? key}) : super(key: key);
+  const CardLivroUsuario({
+    required this.livro,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _CardLivroUsuarioState createState() => _CardLivroUsuarioState();
+  State<CardLivroUsuario> createState() => _CardLivroUsuarioState();
 }
 
 class _CardLivroUsuarioState extends State<CardLivroUsuario> {
@@ -22,12 +24,11 @@ class _CardLivroUsuarioState extends State<CardLivroUsuario> {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return const Center(
-                child: CircularProgressIndicator(),
-              );
-            
+              child: CircularProgressIndicator(),
+            );
           },
         );
-        Future.delayed(new Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.pop(context);
           Navigator.push(
             context,
@@ -39,9 +40,8 @@ class _CardLivroUsuarioState extends State<CardLivroUsuario> {
           );
         });
       },
-      child: Container(
+      child: SizedBox(
         width: 130,
-        //height: 200,
         child: Column(
           children: [
             Expanded(

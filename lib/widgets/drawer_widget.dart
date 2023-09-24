@@ -13,12 +13,12 @@ class DrawerWidget extends StatefulWidget {
 class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 275,
       child: Drawer(
         backgroundColor: Colors.transparent,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
@@ -31,10 +31,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 buildHeader(context),
-                Divider(
+                const Divider(
                   color: Colors.white,
                 ),
-                BuildMenuItens(context),
+                buildMenuItens(context),
               ],
             ),
           ),
@@ -56,19 +56,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => TelaUsuario()),
+                  MaterialPageRoute(builder: (context) => const TelaUsuario()),
                 );
               },
-              icon: CircleAvatar(
+              icon: const CircleAvatar(
                 radius: 52,
                 backgroundImage: NetworkImage(
                     'https://c.wallhere.com/photos/a0/bd/Chainsaw_Man_Aki_Chainsaw_Man_Aki_Hayakawa_anime_Anime_screenshot-2202139.jpg!d'),
               ),
             ),
-            Text('Usuário',
+            const Text('Usuário',
                 style: TextStyle(fontSize: 20, color: Colors.white)),
-            SizedBox(height: 6),
-            Text('usuário@gmail.com',
+            const SizedBox(height: 6),
+            const Text('usuário@gmail.com',
                 style: TextStyle(fontSize: 14, color: Colors.white)),
           ],
         ),
@@ -76,29 +76,29 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     );
   }
 
-  Widget BuildMenuItens(BuildContext context) {
+  Widget buildMenuItens(BuildContext context) {
     return Column(
       children: [
         ListTile(
           minLeadingWidth: 25,
-          leading: Icon(Icons.home, color: Colors.white, size: 20),
+          leading: const Icon(Icons.home, color: Colors.white, size: 20),
           title:
-              Text('Home', style: TextStyle(fontSize: 16, color: Colors.white)),
+              const Text('Home', style: TextStyle(fontSize: 16, color: Colors.white)),
           onTap: () {},
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ListTile(
           minLeadingWidth: 25,
-          leading: Icon(Icons.favorite_border, color: Colors.white, size: 20),
-          title: Text('Favoritos',
+          leading: const Icon(Icons.favorite_border, color: Colors.white, size: 20),
+          title: const Text('Favoritos',
               style: TextStyle(color: Colors.white, fontSize: 16)),
           onTap: () {},
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ListTile(
           minLeadingWidth: 25,
-          leading: Icon(Icons.book, color: Colors.white, size: 20),
-          title: Text('Meus Livros',
+          leading: const Icon(Icons.book, color: Colors.white, size: 20),
+          title: const Text('Meus Livros',
               style: TextStyle(color: Colors.white, fontSize: 16)),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(
@@ -107,11 +107,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             );
           },
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ListTile(
           minLeadingWidth: 25,
-          leading: Icon(Icons.exit_to_app, color: Colors.white, size: 20),
-          title: Text('Logout',
+          leading: const Icon(Icons.exit_to_app, color: Colors.white, size: 20),
+          title: const Text('Logout',
               style: TextStyle(color: Colors.white, fontSize: 16)),
           onTap: () {
             Navigator.of(context).pushAndRemoveUntil(

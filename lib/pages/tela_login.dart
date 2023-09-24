@@ -165,7 +165,7 @@ class _TelaLoginState extends State<TelaLogin> {
                             if (autenticado) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => TelaPrincipal()),
+                                    builder: (context) => const TelaPrincipal()),
                               );
                             } else {
                               _autenticadoFalse();
