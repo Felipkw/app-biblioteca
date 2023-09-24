@@ -79,7 +79,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             ),
                             Flexible(
                               child: Text(
-                                "R\$ ${widget.cardLivro.valor}",
+                                "R\$ ${widget.cardLivro.preco}",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 20,

@@ -60,7 +60,7 @@ class _CardLivroState extends State<CardLivro> {
               ),
             ),
             Text(
-              "R\$  ${widget.livro.valor}",
+              "R\$  ${widget.livro.preco}",
               style: TextStyle(
                 fontSize: 10,
                 color: Colors.white,

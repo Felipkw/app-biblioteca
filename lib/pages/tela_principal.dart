@@ -1,8 +1,7 @@
-import 'package:app_biblioteca/pages/tela_usuario.dart';
+import 'package:app_biblioteca/backend/modules/livro/repository/livro_sqlite_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:app_biblioteca/widgets/card_livro.dart';
 import 'package:app_biblioteca/widgets/drawer_widget.dart';
-import 'package:app_biblioteca/backend/modules/livro/livro_controller.dart';
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 
 class TelaPrincipal extends StatefulWidget {
@@ -12,9 +11,8 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
-  LivroController livroController = LivroController();
-  Future<List<Livro>> listaLivros = LivroController().listar();
-
+  Future<List<Livro>> listaLivros = LivroSqliteRepository().listar();
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
