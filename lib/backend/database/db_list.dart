@@ -6,12 +6,12 @@ class DBList {
   late List<Livro> livros = [];
 
   DBList() {
-    Usuario usuario1 = Usuario(
-        id: 1, nome: "teste", email: "teste@mail.com", senha: "12345678");
-    Usuario usuario2 = Usuario(
-        id: 2, nome: "adelson", email: "adelson@mail.com", senha: "12345678");
-    Usuario usuario3 = Usuario(
-        id: 3, nome: "maria", email: "maria@mail.com", senha: "12345678");
+    Usuario usuario1 = Usuario.cadastro(
+        nome: "teste", email: "teste@mail.com", senha: "12345678");
+    Usuario usuario2 = Usuario.cadastro(
+        nome: "adelson", email: "adelson@mail.com", senha: "12345678");
+    Usuario usuario3 = Usuario.cadastro(
+        nome: "maria", email: "maria@mail.com", senha: "12345678");
 
     usuarios.add(usuario1);
     usuarios.add(usuario2);
