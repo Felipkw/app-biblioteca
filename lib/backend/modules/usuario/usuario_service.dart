@@ -16,10 +16,6 @@ class UsuarioService {
     await usuarioRepository.criar(usuario: usuario);
   }
 
-  List<Usuario> listar() {
-    return usuarioRepository.listar();
-  }
-
   Future<bool> autenticar(
       {required String email, required String senha}) async {
     try {

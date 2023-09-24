@@ -5,35 +5,44 @@ class Usuario {
   late String senha;
   late String urlFoto;
 
-  Usuario({int? id, String? urlFoto, required String nome, required String email, required String senha}) {
-    this.nome = nome;
-    this.email = email;
-    this.senha = senha;
+  Usuario({
+    required this.id,
+    required this.nome,
+    required this.email,
+    required this.senha,
+    required this.urlFoto,
+  });
 
-    if (id != null) {
-      this.id = id;
-    }
+  Usuario.cadastro(
+      {required this.nome, required this.email, required this.senha});
 
-    if (urlFoto != null) {
-      this.urlFoto = urlFoto;
-    }
-  }
-
-  /*Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
     data['id'] = id;
     data['nome'] = nome;
     data['email'] = email;
     data['senha'] = senha;
-    data['urlFoto'] = urlFoto;
+    data['url_foto'] = urlFoto;
 
     return data;
-  }*/
+  }
 
+   Map<String, dynamic> toJsonCadastro() {
+    final Map<String, dynamic> data = <String, dynamic>{};
 
-  @override
-  String toString() {
-    return "Usuario(id: $id, nome: $nome, email: $email, senha: $senha, urlFoto: $urlFoto)";
+    data['nome'] = nome;
+    data['email'] = email;
+    data['senha'] = senha;
+
+    return data;
+  }
+
+  Usuario.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    nome = json['name'];
+    email = json['email'];
+    senha = json['senha'];
+    urlFoto = json['url_foto'];
   }
 }
