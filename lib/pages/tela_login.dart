@@ -44,183 +44,172 @@ class _TelaLoginState extends State<TelaLogin> {
         appBar: buildAppBar(),
         body: Padding(
           padding: const EdgeInsets.all(16),
-          child: Flexible(
+          child: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 34),
                   const Icon(
                     Icons.account_circle,
                     size: 96.0,
                     color: Colors.white,
                   ),
-                  const SizedBox(height: 16.0),
-                  Flexible(
-                    child: TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        hintText: 'Digite seu e-mail',
-                        labelText: 'E-mail',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        filled: true,
-                        fillColor: Colors.white,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                      ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return "o e-mail é obrigatório";
-                        } else if (!_isValidEmail(value)) {
-                          return 'O e-mail precisa ser válido';
-                        }
-                        return null;
-                      },
+                  const SizedBox(height: 38),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      hintText: 'Digite seu e-mail',
+                      labelText: 'E-mail',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0)),
+                      filled: true,
+                      fillColor: Colors.white,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
                     ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "o e-mail é obrigatório";
+                      } else if (!_isValidEmail(value)) {
+                        return 'O e-mail precisa ser válido';
+                      }
+                      return null;
+                    },
                   ),
-                  const SizedBox(height: 16.0),
-                  Flexible(
-                    child: TextFormField(
-                      controller: _senhaController,
-                      decoration: InputDecoration(
-                        hintText: 'Digite sua senha',
-                        labelText: 'Senha',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        filled: true,
-                        fillColor: Colors.white,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        suffixIcon: IconButton(
-                            icon: Icon(_isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                _isObscure = !_isObscure;
-                              });
-                            }),
-                      ),
-                      obscureText: _isObscure,
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'A senha é obrigatório';
-                        } else if (value.length < 8) {
-                          return 'A senha deve ter, no mínimo, 8 caracteres';
-                        }
-                        return null;
-                      },
+                  const SizedBox(height: 38),
+                  TextFormField(
+                    controller: _senhaController,
+                    decoration: InputDecoration(
+                      hintText: 'Digite sua senha',
+                      labelText: 'Senha',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0)),
+                      filled: true,
+                      fillColor: Colors.white,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      suffixIcon: IconButton(
+                          icon: Icon(_isObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          }),
                     ),
+                    obscureText: _isObscure,
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'A senha é obrigatório';
+                      } else if (value.length < 8) {
+                        return 'A senha deve ter, no mínimo, 8 caracteres';
+                      }
+                      return null;
+                    },
                   ),
-                  const SizedBox(height: 16.0),
-                  Flexible(
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all<Size>(
-                              const Size.fromWidth(150)),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.deepPurple),
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          padding: MaterialStateProperty.all<EdgeInsets>(
-                            const EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 24.0),
-                          ),
-                          textStyle: MaterialStateProperty.all<TextStyle>(
-                            const TextStyle(fontSize: 16.0),
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+                  const SizedBox(height: 40.0),
+                  ElevatedButton(
+                      style: ButtonStyle(
+                        fixedSize: MaterialStateProperty.all<Size>(
+                            const Size.fromWidth(150)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.deepPurple),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              vertical: 16.0, horizontal: 24.0),
+                        ),
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                          const TextStyle(fontSize: 16.0),
+                        ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            String email = _emailController.text;
-                            String senha = _senhaController.text;
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          String email = _emailController.text;
+                          String senha = _senhaController.text;
 
-                            _emailController.clear();
-                            _senhaController.clear();
+                          _emailController.clear();
+                          _senhaController.clear();
 
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              },
-                            );
-
-                            bool autenticado = false;
-
-                            UsuarioController usuarioController =
-                                UsuarioController();
-
-                            autenticado = await usuarioController.autenticar(
-                                email: email, senha: senha);
-
-                            Navigator.of(context).pop();
-
-                            if (autenticado) {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => const TelaPrincipal()),
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
                               );
-                            } else {
-                              _autenticadoFalse();
-                            }
+                            },
+                          );
+
+                          bool autenticado = false;
+
+                          UsuarioController usuarioController =
+                              UsuarioController();
+
+                          autenticado = await usuarioController.autenticar(
+                              email: email, senha: senha);
+
+                          Navigator.of(context).pop();
+
+                          if (autenticado) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const TelaPrincipal()),
+                            );
+                          } else {
+                            _autenticadoFalse();
                           }
-                        },
-                        child: const Text("Login")),
+                        }
+                      },
+                      child: const Text("Login")),
+                  const SizedBox(height: 20.0),
+                  Text(
+                    "Ainda não possui uma conta?",
+                    style: TextStyle(fontSize: 16.0, color: Colors.white),
                   ),
-                  const SizedBox(height: 16.0),
-                  const Flexible(
-                    child: Text(
-                      "Ainda não possui uma conta?",
-                      style: TextStyle(fontSize: 16.0, color: Colors.white),
-                    ),
+                  Text(
+                    "Faça o cadastro",
+                    style: TextStyle(fontSize: 16.0, color: Colors.white),
                   ),
-                  const Flexible(
-                    child: Text(
-                      "Faça o cadastro",
-                      style: TextStyle(fontSize: 16.0, color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  Flexible(
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all<Size>(
-                              const Size.fromWidth(150)),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.deepPurple),
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          padding: MaterialStateProperty.all<EdgeInsets>(
-                            const EdgeInsets.symmetric(
-                                vertical: 12.0, horizontal: 24.0),
-                          ),
-                          textStyle: MaterialStateProperty.all<TextStyle>(
-                            const TextStyle(
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                      style: ButtonStyle(
+                        fixedSize: MaterialStateProperty.all<Size>(
+                            const Size.fromWidth(150)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.deepPurple),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              vertical: 14.0, horizontal: 24.0),
+                        ),
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                          const TextStyle(
+                            fontSize: 16.0,
                           ),
                         ),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const TelaCadastro()),
-                          );
-                        },
-                        child: const Text("Cadastro")),
-                  ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const TelaCadastro()),
+                        );
+                      },
+                      child: const Text("Cadastro")),
                 ],
               ),
             ),
