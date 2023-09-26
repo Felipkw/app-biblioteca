@@ -32,24 +32,24 @@ class _TelaUsuarioState extends State<TelaUsuario> {
               child: Flexible(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 75,
                       backgroundColor: Colors.black,
                       backgroundImage: NetworkImage(
                           'https://64.media.tumblr.com/4dcfac158beb80938140ff6965eb56e1/681395bdf23060e5-d0/s1280x1920/65a85181b7fd6ae0c8097323f11bcd3fd875a705.jpg'),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Nome de usuário',
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     ElevatedButton.icon(
@@ -57,7 +57,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.deepPurple),
                         fixedSize: MaterialStateProperty.all<Size>(
-                            Size.fromWidth(210)),
+                            const Size.fromWidth(210)),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         padding: MaterialStateProperty.all<EdgeInsets>(
@@ -82,7 +82,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                           )),
                       onPressed: () {},
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     ElevatedButton.icon(
                       style: ButtonStyle(
                         backgroundColor:
@@ -90,7 +90,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         fixedSize: MaterialStateProperty.all<Size>(
-                            Size.fromWidth(210)),
+                            const Size.fromWidth(210)),
                         padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
@@ -107,13 +107,13 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                       ),
                       onPressed: () {},
                       icon: const Icon(Icons.shopping_cart),
-                      label: Text("Carrinho",
+                      label: const Text("Carrinho",
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           )),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     ElevatedButton.icon(
                       style: ButtonStyle(
                         backgroundColor:
@@ -121,7 +121,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         fixedSize: MaterialStateProperty.all<Size>(
-                            Size.fromWidth(210)),
+                            const Size.fromWidth(210)),
                         padding: MaterialStateProperty.all<EdgeInsets>(
                           const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
@@ -138,7 +138,7 @@ class _TelaUsuarioState extends State<TelaUsuario> {
                       ),
                       onPressed: () {},
                       icon: const Icon(Icons.delete),
-                      label: Text("Excluir perfil",
+                      label: const Text("Excluir perfil",
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
@@ -160,9 +160,9 @@ buildAppBar(BuildContext context) {
     centerTitle: true,
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: Text('Usuário', style: TextStyle(fontSize: 15)),
+    title: const Text('Usuário', style: TextStyle(fontSize: 15)),
     leading: IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back,
         size: 16,
       ),
@@ -173,7 +173,7 @@ buildAppBar(BuildContext context) {
     ),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.menu,
           size: 16,
         ),

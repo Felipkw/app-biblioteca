@@ -16,7 +16,7 @@ class _TelaInicialState extends State<TelaInicial> {
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,

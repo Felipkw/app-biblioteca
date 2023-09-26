@@ -1,8 +1,7 @@
-import 'package:app_biblioteca/pages/tela_usuario.dart';
+import 'package:app_biblioteca/backend/modules/livro/repository/livro_sqlite_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:app_biblioteca/widgets/card_livro.dart';
 import 'package:app_biblioteca/widgets/drawer_widget.dart';
-import 'package:app_biblioteca/backend/modules/livro/livro_controller.dart';
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 
 class TelaPrincipal extends StatefulWidget {
@@ -12,8 +11,10 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
-  LivroController livroController = LivroController();
-  Future<List<Livro>> listaLivros = LivroController().listar();
+  Future<List<Livro>> listaLivros = LivroSqliteRepository().listar();
+  Future<List<Livro>> listaTalvezGoste =
+      LivroSqliteRepository().listarTalvezGoste();
+  Future<List<Livro>> listaParaVoce = LivroSqliteRepository().listarParaVoce();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          drawer: DrawerWidget(),
+          drawer: const DrawerWidget(),
           appBar: buildAppBar(context),
           body: SingleChildScrollView(
             child: Column(
@@ -61,7 +62,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  buildLista(listaLivros: listaLivros),
+                  buildLista(listaLivros: listaTalvezGoste),
                   const SizedBox(height: 30),
                   const Text(
                     'Baseado em pesquisas recentes',
@@ -73,7 +74,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   const SizedBox(
                     height: 15,
                   ),
-                  buildLista(listaLivros: listaLivros)
+                  buildLista(listaLivros: listaParaVoce)
                 ]),
           ),
         ),
@@ -87,14 +88,14 @@ buildAppBar(BuildContext context) {
     centerTitle: true,
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: Text('Início', style: TextStyle(fontSize: 15)),
+    title: const Text('Início', style: TextStyle(fontSize: 15)),
     leading: Builder(
       builder: (BuildContext context) {
         return IconButton(
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
             size: 16,
           ),
@@ -103,7 +104,7 @@ buildAppBar(BuildContext context) {
     ),
     actions: [
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.shopping_cart,
           size: 16,
         ),
@@ -114,7 +115,7 @@ buildAppBar(BuildContext context) {
 }
 
 buildLista({required Future<List<Livro>> listaLivros}) {
-  return Container(
+  return SizedBox(
     height: 160,
     child: FutureBuilder(
       future: listaLivros,

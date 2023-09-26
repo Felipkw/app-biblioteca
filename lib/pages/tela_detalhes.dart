@@ -1,8 +1,4 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
-import 'package:app_biblioteca/pages/tela_cadastro.dart';
-import 'package:app_biblioteca/pages/tela_login.dart';
-import 'package:app_biblioteca/pages/tela_principal.dart';
-import 'package:app_biblioteca/widgets/card_livro.dart';
 import 'package:flutter/material.dart';
 
 class TelaDetalhes extends StatefulWidget {
@@ -79,7 +75,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             ),
                             Flexible(
                               child: Text(
-                                "R\$ ${widget.cardLivro.valor}",
+                                "R\$ ${widget.cardLivro.preco}",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 20,
@@ -88,7 +84,9 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10,),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             const Flexible(
                               child: SizedBox(
                                   height: 100,
@@ -149,8 +147,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             ),
                           ),
                         ),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                         child: const Text("Comprar")),
                     const SizedBox(height: 20.0),
                     ElevatedButton(
@@ -173,12 +170,7 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             ),
                           ),
                         ),
-                        onPressed: () {
-                          // Navigator.of(context).push(
-                          // MaterialPageRoute(
-                          //builder: (context) => const Livroo()),
-                          // );
-                        },
+                        onPressed: () {},
                         child: const Text("Carrinho")),
                   ],
                 ),
@@ -190,22 +182,21 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
     );
   }
 
-
-buildAppBar() {
-  return AppBar(
-    centerTitle: true,
-    elevation: 0,
-    backgroundColor: Colors.transparent,
-    title: Text(livro.titulo, style: const TextStyle(fontSize: 15)),
-    actions: [
-      IconButton(
-        icon: const Icon(
-          Icons.menu,
-          size: 16,
+  buildAppBar() {
+    return AppBar(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      title: Text(livro.titulo, style: const TextStyle(fontSize: 15)),
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.menu,
+            size: 16,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 }

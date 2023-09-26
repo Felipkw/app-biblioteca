@@ -5,8 +5,6 @@ class UsuarioValidator {
     if (nome == '' || nome.isEmpty) {
       throw Exception("Campo nome vazio!");
     }
-
-    print("nome válido");
   }
 
   void emailValidator({required String email}) {
@@ -15,16 +13,12 @@ class UsuarioValidator {
     if (!emailRegex.hasMatch(email)) {
       throw Exception("E-mail inválido.");
     }
-
-    print("email valido");
   }
 
   void senhaValidator({required String senha}) {
     if (senha.length < 8) {
       throw Exception("A senha possui menos de 8 caracteres.");
     }
-
-    print("nome válido");
   }
 
   void fullUsuarioValidator({required Usuario usuario}) {
@@ -35,7 +29,5 @@ class UsuarioValidator {
     } catch (exception) {
       rethrow;
     }
-
-    print("usuario válido, tchow");
   }
 }

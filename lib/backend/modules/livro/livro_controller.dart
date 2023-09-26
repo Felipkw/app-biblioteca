@@ -1,14 +1,14 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 import 'package:app_biblioteca/backend/modules/livro/livro_service.dart';
-import 'package:app_biblioteca/backend/modules/livro/repository/livro_list_repository.dart';
+import 'package:app_biblioteca/backend/modules/livro/repository/livro_sqlite_repository.dart';
 
 class LivroController {
-  LivroListRepository? livroListRepository;
+  LivroSqliteRepository? livroSqliteRepository;
   LivroService? livroService;
 
   LivroController() {
-    livroListRepository = LivroListRepository();
-    livroService = LivroService(livroListRepository!);
+    livroSqliteRepository = LivroSqliteRepository();
+    livroService = LivroService(livroSqliteRepository!);
   }
 
   Future<List<Livro>> listar() async {
