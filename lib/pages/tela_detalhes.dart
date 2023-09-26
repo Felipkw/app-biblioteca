@@ -1,5 +1,6 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 class TelaDetalhes extends StatefulWidget {
   final Livro cardLivro;
@@ -110,15 +111,30 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                         Flexible(
                           child: SizedBox(
                             width: 500,
-                            child: Text(
+                            child: ReadMoreText(
                               widget.cardLivro.descricao,
                               textAlign: TextAlign.justify,
-                              style: const TextStyle(
+                              colorClickableText: Colors.white,
+                              trimMode: TrimMode.Length,
+                              trimLength: 450,
+                              trimCollapsedText: ' Show more',
+                              trimExpandedText: ' Show less',
+                              style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                               ),
-                            ),
+                              moreStyle: TextStyle(
+                                fontSize: 12,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              lessStyle: TextStyle(
+                                fontSize: 12,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )
                           ),
                         ),
                       ],
