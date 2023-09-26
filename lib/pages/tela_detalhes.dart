@@ -105,15 +105,15 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                     const SizedBox(
                       height: 30,
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Flexible(
                           child: SizedBox(
                             width: 500,
                             child: Text(
-                              'Descrição:\nBilbo Bolseiro era um dos mais respeitáveis hobbits de todo o Condado até que, um dia, o mago Gandalf bate à sua porta. A partir de então, toda sua vida pacata e campestre soprando anéis de fumaça com seu belo cachimbo começa a mudar. Ele é convocado a participar de uma aventura por ninguém menos do que Thorin Escudo-de-Carvalho, um príncipe do poderoso povo dos Anãos.',
+                              widget.cardLivro.descricao,
                               textAlign: TextAlign.justify,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,

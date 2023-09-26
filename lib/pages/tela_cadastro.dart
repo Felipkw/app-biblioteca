@@ -41,23 +41,24 @@ class _TelaCadastroState extends State<TelaCadastro> {
               ]),
         ),
         child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: buildAppBar(),
-            body: Padding(
+          backgroundColor: Colors.transparent,
+          appBar: buildAppBar(),
+          body: Padding(
               padding: const EdgeInsets.all(16),
               child: Form(
                 key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.account_circle,
-                      size: 96.0,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(height: 16.0),
-                    Flexible(
-                      child: TextFormField(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 22),
+                      const Icon(
+                        Icons.account_circle,
+                        size: 96.0,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(height: 30.0),
+                      TextFormField(
                         controller: _nomeController,
                         decoration: InputDecoration(
                           hintText: 'Digite como deseja ser chamado',
@@ -76,10 +77,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           return null;
                         },
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    Flexible(
-                      child: TextFormField(
+                      const SizedBox(height: 25.0),
+                      TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
                           hintText: 'Digite seu e-mail',
@@ -99,10 +98,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           return null;
                         },
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    Flexible(
-                      child: TextFormField(
+                      const SizedBox(height: 25.0),
+                      TextFormField(
                         controller: _senhaController,
                         decoration: InputDecoration(
                           hintText: 'Digite sua senha',
@@ -132,10 +129,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           return null;
                         },
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    Flexible(
-                      child: ElevatedButton(
+                      const SizedBox(height: 24.0),
+                      ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Colors.deepPurple),
@@ -143,7 +138,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                                 MaterialStateProperty.all<Color>(Colors.white),
                             padding: MaterialStateProperty.all<EdgeInsets>(
                               const EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 24.0),
+                                  vertical: 16.0, horizontal: 24.0),
                             ),
                             textStyle: MaterialStateProperty.all<TextStyle>(
                               const TextStyle(fontSize: 14.0),
@@ -204,29 +199,23 @@ class _TelaCadastroState extends State<TelaCadastro> {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           )),
-                    ),
-                    const SizedBox(height: 16.0),
-                    const Flexible(
-                      child: Text(
+                      const SizedBox(height: 18.0),
+                      Text(
                         "Já possui uma conta? Faça o Login",
                         style: TextStyle(
                             fontSize: 14.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    const Flexible(
-                      child: Text(
+                      Text(
                         "Faça o Login",
                         style: TextStyle(
                             fontSize: 14.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    Flexible(
-                      child: ElevatedButton(
+                      const SizedBox(height: 18.0),
+                      ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Colors.deepPurple),
@@ -234,7 +223,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                                 MaterialStateProperty.all<Color>(Colors.white),
                             padding: MaterialStateProperty.all<EdgeInsets>(
                               const EdgeInsets.symmetric(
-                                  vertical: 12.0, horizontal: 24.0),
+                                  vertical: 14.0, horizontal: 24.0),
                             ),
                             textStyle: MaterialStateProperty.all<TextStyle>(
                               const TextStyle(fontSize: 14.0),
@@ -253,11 +242,11 @@ class _TelaCadastroState extends State<TelaCadastro> {
                             );
                           },
                           child: const Text("Login")),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            )),
+              )),
+        ),
       ),
     );
   }

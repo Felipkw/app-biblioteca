@@ -5,8 +5,18 @@ import './interface/interface_usuario_repository.dart';
 
 class UsuarioSqliteRepository implements IUsuarioRepository {
   @override
-  Future<bool> autenticar({required String email, required String senha}) {
-    throw UnimplementedError();
+  Future<bool> autenticar(
+      {required String email, required String senha}) async {
+    DBHelper dbHelper = DBHelper();
+    Database db = await dbHelper.initDB();
+
+    String sql = 'SELECT * FROM usuarios '
+        'WHERE email = ? '
+        'AND senha = ?;';
+
+    final resultSet = await db.rawQuery(sql, [email, senha]);
+
+    return resultSet.isNotEmpty;
   }
 
   @override
