@@ -1,12 +1,11 @@
-import 'package:app_biblioteca/pages/tela_inicial.dart';
+import 'package:app_biblioteca/pages/tela_splash.dart';
 import 'package:flutter/material.dart';
 
-Future main() async {
-
+void main() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TelaInicial(),
+      home: TelaSplash(),
     ),
   );
 }

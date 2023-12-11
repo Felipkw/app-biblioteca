@@ -1,3 +1,4 @@
+import 'package:app_biblioteca/backend/database/shared_prefs.dart';
 import 'package:app_biblioteca/pages/tela_inicial.dart';
 import 'package:app_biblioteca/pages/tela_livros_usuario.dart';
 import 'package:app_biblioteca/pages/tela_usuario.dart';
@@ -114,6 +115,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           title: const Text('Logout',
               style: TextStyle(color: Colors.white, fontSize: 16)),
           onTap: () {
+            // remove as infomações do usuário do shared preferences
+            SharedPrefs().setUser(false);
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => const TelaInicial()),
               (Route<dynamic> route) => false,

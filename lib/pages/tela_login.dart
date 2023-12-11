@@ -2,6 +2,7 @@ import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 import 'package:app_biblioteca/pages/tela_cadastro.dart';
 import 'package:app_biblioteca/pages/tela_principal.dart';
 import 'package:flutter/material.dart';
+import 'package:app_biblioteca/backend/database/shared_prefs.dart';
 
 class TelaLogin extends StatefulWidget {
   const TelaLogin({super.key});
@@ -159,6 +160,8 @@ class _TelaLoginState extends State<TelaLogin> {
                           Navigator.of(context).pop();
 
                           if (autenticado) {
+                            //salva as informações do usuário no shared preferences
+                            await SharedPrefs().setUser(true);
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => const TelaPrincipal()),
