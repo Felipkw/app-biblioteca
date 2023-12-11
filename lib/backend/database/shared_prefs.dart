@@ -5,14 +5,14 @@ class SharedPrefs {
 
   setUser(bool status) async {
     SharedPreferences instance = await _getIntance;
-    instance.setBool("USUARIO", status);
+    instance.setBool("USUARIOS", status);
   }
 
   getUser() async {
 
     SharedPreferences instance = await _getIntance;
 
-    bool userStatus = instance.getBool("USER") ?? false;
+    bool userStatus = instance.getBool("USUARIOS") ?? false;
     return userStatus;
   }
 }
