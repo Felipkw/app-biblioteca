@@ -1,23 +1,24 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
 import 'package:app_biblioteca/bloc/favoritos_cubit.dart';
+import 'package:app_biblioteca/pages/tela_favoritos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TelaDetalhes extends StatefulWidget {
+class TelaDetalhesFavoritos extends StatefulWidget {
   final Livro cardLivro;
 
-  const TelaDetalhes({
+  const TelaDetalhesFavoritos({
     Key? key,
     required this.cardLivro,
   }) : super(key: key);
 
   @override
-  State<TelaDetalhes> createState() => _TelaDetalhesState();
+  State<TelaDetalhesFavoritos> createState() => _TelaDetalhesFavoritosState();
 }
 
-class _TelaDetalhesState extends State<TelaDetalhes> {
+class _TelaDetalhesFavoritosState extends State<TelaDetalhesFavoritos> {
   static const isFavoriteKey = "isFavorite_key";
 
   Livro get livro => widget.cardLivro;
@@ -236,6 +237,10 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
     return AppBar(
       centerTitle: true,
       elevation: 0,
+      leading: IconButton(onPressed: () {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const TelaFavoritos()));
+      }, icon: const Icon(Icons.arrow_back)),
       backgroundColor: Colors.transparent,
       title: Text(livro.titulo, style: const TextStyle(fontSize: 15)),
       actions: [
