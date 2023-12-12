@@ -1,6 +1,9 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
+import 'package:app_biblioteca/bloc/favoritos_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDetalhes extends StatefulWidget {
   final Livro cardLivro;
@@ -15,7 +18,33 @@ class TelaDetalhes extends StatefulWidget {
 }
 
 class _TelaDetalhesState extends State<TelaDetalhes> {
+  static const isFavoriteKey = "isFavorite_key";
+
   Livro get livro => widget.cardLivro;
+  late bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _restorePersistsPreferences();
+    isFavorite = context.read<FavoritosCubit>().isFavorite(widget.cardLivro);
+  }
+
+  void _restorePersistsPreferences() async {
+    var preferences = await SharedPreferences.getInstance();
+    var isFavorite = preferences.getBool(isFavoriteKey);
+    setState(() {
+      this.isFavorite = isFavorite!;
+    });
+  }
+
+  void _persistPreferences() async {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+    var preferences = await SharedPreferences.getInstance();
+    preferences.setBool(isFavoriteKey, isFavorite);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,14 +117,32 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const Flexible(
+                            Flexible(
                               child: SizedBox(
                                   height: 100,
                                   width: 1000,
-                                  child: Icon(
-                                    Icons.favorite,
-                                    size: 40,
-                                    color: Colors.white,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      size: 40,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      _persistPreferences();
+                                    
+                                    if (isFavorite) {
+                                      context
+                                          .read<FavoritosCubit>()
+                                          .addFavorite(widget.cardLivro);
+                                    } else {
+                                      context
+                                          .read<FavoritosCubit>()
+                                          .removeFavorite(widget.cardLivro);
+                                    }
+                                    },
+                                    
                                   )),
                             ),
                           ]),
@@ -118,13 +165,18 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
                                 fontSize: 14,
                                 color: Colors.white,
                               ),
-
                               trimMode: TrimMode.Length,
                               trimLength: 300,
                               trimCollapsedText: 'Show more',
                               trimExpandedText: 'Show less',
-                              moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.pinkAccent),
-                              lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.pinkAccent),
+                              moreStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.pinkAccent),
+                              lessStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.pinkAccent),
                             ),
                           ),
                         ),

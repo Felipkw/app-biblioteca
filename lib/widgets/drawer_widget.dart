@@ -1,4 +1,5 @@
 import 'package:app_biblioteca/backend/database/shared_prefs.dart';
+import 'package:app_biblioteca/pages/tela_favoritos.dart';
 import 'package:app_biblioteca/pages/tela_inicial.dart';
 import 'package:app_biblioteca/pages/tela_livros_usuario.dart';
 import 'package:app_biblioteca/pages/tela_usuario.dart';
@@ -93,7 +94,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           leading: const Icon(Icons.favorite_border, color: Colors.white, size: 20),
           title: const Text('Favoritos',
               style: TextStyle(color: Colors.white, fontSize: 16)),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => const TelaFavoritos()),
+              (Route<dynamic> route) => false,
+            );
+          },
         ),
         const SizedBox(height: 8),
         ListTile(
