@@ -1,3 +1,5 @@
+import 'package:app_biblioteca/backend/database/address_api.dart';
+import 'package:app_biblioteca/backend/modules/address/address.dart';
 import 'package:app_biblioteca/pages/tela_cadastro.dart';
 import 'package:app_biblioteca/pages/tela_login.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +97,27 @@ class _TelaInicialState extends State<TelaInicial> {
                     },
                     child: const Text("Login")
                 ),
+                                        Column(
+            children: [
+              Text(
+                'Endereço:',
+                style: TextStyle(fontSize: 16.0,color: Colors.white),
+              ),
+              FutureBuilder(
+                future: pegarCep(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Text(
+                      snapshot.data.toString(),
+                      style: TextStyle(fontSize: 16.0,color: Colors.white),
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              ),
+            ],
+          )
               ],
             ),
             ),
@@ -111,4 +134,15 @@ class _TelaInicialState extends State<TelaInicial> {
       backgroundColor: Colors.transparent,
     );
   }
+    Future<String> pegarCep() async {
+    String texto = '';
+    await Future.delayed(const Duration(seconds: 3));
+    Address? address = await AddressApi().findAddressByCep("57318450");
+    if (address != null) {
+      texto = '${address.city}';
+    } else {
+      texto = 'Error!!';
+    }
+    return texto;
+}
 }
