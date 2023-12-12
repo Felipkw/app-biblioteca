@@ -1,3 +1,5 @@
+import 'package:app_biblioteca/backend/database/address_api.dart';
+import 'package:app_biblioteca/backend/modules/address/address.dart';
 import 'package:app_biblioteca/backend/modules/usuario/usuario_controller.dart';
 import 'package:app_biblioteca/pages/tela_cadastro.dart';
 import 'package:app_biblioteca/pages/tela_principal.dart';
@@ -213,6 +215,27 @@ class _TelaLoginState extends State<TelaLogin> {
                         );
                       },
                       child: const Text("Cadastro")),
+                        Column(
+            children: [
+              Text(
+                'Endereço:',
+                style: TextStyle(fontSize: 16.0,color: Colors.white),
+              ),
+              FutureBuilder(
+                future: pegarCep(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Text(
+                      snapshot.data.toString(),
+                      style: TextStyle(fontSize: 16.0,color: Colors.white),
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              ),
+            ],
+          )
                 ],
               ),
             ),
@@ -249,4 +272,15 @@ class _TelaLoginState extends State<TelaLogin> {
               ],
             ));
   }
+  Future<String> pegarCep() async {
+    String texto = '';
+    await Future.delayed(const Duration(seconds: 3));
+    Address? address = await AddressApi().findAddressByCep("57318450");
+    if (address != null) {
+      texto = '${address.city}';
+    } else {
+      texto = 'Error!!';
+    }
+    return texto;
+}
 }
