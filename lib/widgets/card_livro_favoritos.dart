@@ -1,20 +1,21 @@
 import 'package:app_biblioteca/backend/modules/livro/livro.dart';
+import 'package:app_biblioteca/pages/tela_detalhe_favoritos.dart';
 import 'package:app_biblioteca/pages/tela_detalhes.dart';
 import 'package:flutter/material.dart';
 
-class CardLivroUsuario extends StatefulWidget {
+class CardLivroFavoritos extends StatefulWidget {
   final Livro livro;
 
-  const CardLivroUsuario({
+  const CardLivroFavoritos({
     required this.livro,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CardLivroUsuario> createState() => _CardLivroUsuarioState();
+  State<CardLivroFavoritos> createState() => _CardLivroFavoritosState();
 }
 
-class _CardLivroUsuarioState extends State<CardLivroUsuario> {
+class _CardLivroFavoritosState extends State<CardLivroFavoritos> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,7 +34,7 @@ class _CardLivroUsuarioState extends State<CardLivroUsuario> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) {
-              return TelaDetalhes(
+              return TelaDetalhesFavoritos(
                 cardLivro: widget.livro,
               );
             }),

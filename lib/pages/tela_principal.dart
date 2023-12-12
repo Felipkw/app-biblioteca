@@ -17,6 +17,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   Future<List<Livro>> listaParaVoce = LivroSqliteRepository().listarParaVoce();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
